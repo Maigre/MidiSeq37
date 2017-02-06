@@ -1,2 +1,2 @@
-# MidiSeq37
+# MiniSeq37
 Step Sequencer
