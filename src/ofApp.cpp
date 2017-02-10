@@ -1,8 +1,14 @@
 #include "ofApp.h"
 
+#define FRAMERATE 60
+
 //--------------------------------------------------------------
 void ofApp::setup(){
-  sequencer = new Sequencer();
+
+  //if (FRAMERATE > 60) ofSetVerticalSync(false);
+  //ofSetFrameRate(FRAMERATE);
+
+  sequencer = new Sequencer(2);
   sequencer->start();
 }
 

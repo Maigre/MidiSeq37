@@ -1,32 +1,29 @@
-
+#include "ofThread.h"
+#include "ofxMidi.h"
 #include "Ticker.h"
+#include "Track.h"
+#include "Semaphore.h"
 
-const int RESOLUTION = 480;
-
-class Sequencer {
+class Sequencer : public ofThread {
 
   public:
-    Sequencer();
-    void setBPM(int newbpm);
+    Sequencer(int size);
+    void setBPM(int _bpm);
     void progress();
     void start();
     void stop();
 
+    void threadedFunction();
+
   private:
     int bpm;
-    Ticker* ticker;
-    
-    //Tracker* tracker; //contains multiple Track* tracks[16]
-    //each with barSignature & barLoop: after a new tick, calculate new inner tickCount
-    //compare with next event tickCount and proceed or return
-    //Tracker locks back when all tracks have return, and will be unlocked by Ticker
+    int reso;
+    uint64_t lastTick;
+    uint64_t ticks;
+    Semaphore* newTick;
 
-    // Move to tracks
-		int barSig;
-		int barLoop;
+    Ticker* ticker;
+    std::vector<Track*> tracks;
+    ofxMidiOut midiOut;
 
 };
-
-/*Ticker unlock multitracks (thread) trigger,
-multitracks trigger calls all tracks to proceed with new tick count
-then lock back.*/
