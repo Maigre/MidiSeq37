@@ -1,5 +1,6 @@
 #include "Ticker.h"
 #include "Track.h"
+#include "utils.h"
 #include <chrono>
 #include<thread>
 using namespace std::chrono;
@@ -29,7 +30,7 @@ int Ticker::getPerformances() {
 float Ticker::getRealBPM() {
   lock();
   double ellapsed = (lastTickTime - startTime)/1000000.0;
-  float realbpm = *ticks*60 / (ellapsed * RESOLUTION);
+  float realbpm = *ticks*60 / (ellapsed * beat());
   unlock();
   return realbpm;
 }
@@ -66,6 +67,7 @@ void Ticker::threadedFunction() {
       double ellapsed = (currentTime - startTime)/1000000.0;
       cout << " ELLAPSED: " << ellapsed;
       cout << " TICKS: " << *ticks;
+      cout << endl;
     }
 
 

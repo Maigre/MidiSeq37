@@ -3,6 +3,7 @@
 #include "Ticker.h"
 #include "Track.h"
 #include "Semaphore.h"
+#include "conf.h"
 
 class Sequencer : public ofThread {
 
@@ -12,6 +13,8 @@ class Sequencer : public ofThread {
     void progress();
     void start();
     void stop();
+
+    Track* track(uint8_t n);
 
     void threadedFunction();
 

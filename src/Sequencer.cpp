@@ -18,7 +18,7 @@ Sequencer::Sequencer(int size) {
   ticker = new Ticker();
   ticker->ticks = &ticks;
   ticker->newTick = newTick;
-  ticker->debug = 0;
+  ticker->debug = 1;
 
   setBPM(137);
 
@@ -33,15 +33,11 @@ void Sequencer::progress() {
 
   if (!ticker->isThreadRunning()) return;
 
-  ticker->lock();
-  int t = ticks;
-  ticker->unlock();
+  cout << " Perfs: " << ticker->getPerformances();
+  cout << " Real BPM: "<< ticker->getRealBPM();
+  cout << endl;
 
-  // cout << " Perfs: " << ticker->getPerformances();
-  // cout << " Real BPM: "<< ticker->getRealBPM();
-  // cout << endl;
-
-  if (t > 10000) stop();
+  //if (t > 10000) stop();
 
 }
 
@@ -51,6 +47,11 @@ void Sequencer::start() {
 
 void Sequencer::stop() {
   stopThread();
+}
+
+Track* Sequencer::track(uint8_t n) {
+  if (n < tracks.size()) return tracks[n];
+  else return NULL;
 }
 
 void Sequencer::threadedFunction() {

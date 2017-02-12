@@ -1,25 +1,27 @@
 #include "ofApp.h"
-
-#define FRAMERATE 60
+#include "utils.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-  //if (FRAMERATE > 60) ofSetVerticalSync(false);
-  //ofSetFrameRate(FRAMERATE);
+  if (FRAMERATE > 60) ofSetVerticalSync(false);
+  ofSetFrameRate(FRAMERATE);
 
-  sequencer = new Sequencer(2);
+  sequencer = new Sequencer(10);
   sequencer->start();
+
+  for (int k=0; k < (beats(4)*4); k+=beat())
+    sequencer->track(10)->addNote(k, 48, beat()-1);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-  sequencer->progress();
+  //sequencer->progress();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+  
 }
 
 
