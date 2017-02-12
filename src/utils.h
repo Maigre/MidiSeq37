@@ -16,7 +16,12 @@ int beat();
 class Position {
   public:
     Position();
-    void setTick(uint64_t t);
+    void set(uint64_t t);
+
+    uint64_t getTick();
+    void setSignature(int barsInLoop, int beatsInBar);
+
+    int ticks();
     int loop();
     int bar();
     int beat();
@@ -26,5 +31,8 @@ class Position {
 
   private:
     std::mutex tickLock;
-    uint64_t tick;
+    int ticks;
+    uint64_t tickAll;
+    int loopTicks;
+    int barBeats;
 }

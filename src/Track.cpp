@@ -10,6 +10,8 @@ Track::Track(ofxMidiOut* output, int chan, int barPerLoop, int beatPerBar) {
   barLoop = barPerLoop;
   tickLoop = beats(barSig)*barLoop;
 
+  position.setSignature(barLoop, barSig);
+
   notesON.resize(tickLoop);
   notesOFF.resize(128);
   for(int k=0; k<128; k++) notesOFF[k] = NULL;
@@ -24,17 +26,11 @@ Position Track::getPosition() {
   return _pos;
 }
 
-void Track::progress(uint64_t tick) {
-  int loopCount = tick / tickLoop;
-  int tickCount = tick % tickLoop;
-  int barCount = tickCount / beats(barSig);
-  tickCount = tickCount % beats(barSig);
-  int beatCount = tickCount / beat();
-  tickCount = tickCount % beat();
-  cout << " Loop: " << loopCount;
-  cout << " Bar: " << barCount+1 << " Beat: " << 1+beatCount;
-  cout << " Ticks: " << tickCount;
-  cout << " AbsTicks: " << tick;
+void Track::progress() {
+  cout << " Loop: " << position.loop();
+  cout << " Bar: " << position.bar() << " Beat: " << position.beat();
+  cout << " Ticks: " << position.tick();
+  cout << " AbsTicks: " << position.ticks();
   cout << endl;
 }
 
@@ -42,15 +38,8 @@ void Track::onTick(uint64_t tick) {
 
   bool debug = true;
 
-  int t = tick % tickLoop;
-
   // Position
-  position.loop = tick / tickLoop;
-  int tickCount = tick % tickLoop;
-  position.bar = tickCount / beats(barSig);
-  tickCount = tickCount % beats(barSig);
-  position.beat = tickCount / beat();
-  position.tick = tickCount % beat();
+  int t = position.set(tick);
 
   // Notes ON
   notesLock.lock();
