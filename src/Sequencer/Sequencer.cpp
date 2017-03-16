@@ -4,7 +4,7 @@ Sequencer::Sequencer(int size) {
 
   //Midi Out
   midiOut.listPorts();
-  midiOut.openPort(0);
+  midiOut.openPort(1);
 
   newTick = new Semaphore();
   lastTick = 0;
@@ -12,13 +12,13 @@ Sequencer::Sequencer(int size) {
   // Tracker
   tracks.resize(size+1);
   for (int k=0; k<=size; k++)
-    tracks[k] = new Track(&midiOut, k, 4, 4);
+    tracks[k] = new Track(&midiOut, k);
 
   // Ticker
   ticker = new Ticker();
   ticker->ticks = &ticks;
   ticker->newTick = newTick;
-  ticker->debug = 1;
+  ticker->debug = 0;
 
   setBPM(137);
 

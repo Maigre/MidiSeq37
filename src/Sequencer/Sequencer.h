@@ -2,8 +2,8 @@
 #include "ofxMidi.h"
 #include "Ticker.h"
 #include "Track.h"
-#include "Semaphore.h"
-#include "conf.h"
+#include "../Utils/Semaphore.h"
+#include "../conf.h"
 
 class Sequencer : public ofThread {
 

@@ -1,5 +1,5 @@
 #include "ofApp.h"
-#include "utils.h"
+#include "conf.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -7,21 +7,24 @@ void ofApp::setup(){
   if (FRAMERATE > 60) ofSetVerticalSync(false);
   ofSetFrameRate(FRAMERATE);
 
-  sequencer = new Sequencer(10);
+  sequencer = new Sequencer(2);
   sequencer->start();
 
-  for (int k=0; k < (beats(4)*4); k+=beat())
-    sequencer->track(10)->addNote(k, 48, beat()-1);
+  for (int k=0; k < (RESOLUTION*4*4); k+=RESOLUTION*2)
+    sequencer->track(2)->addNote(k, 48, RESOLUTION-1);
+
+  launchpad = new Launchpad(9000, 9001);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-  //sequencer->progress();
+  sequencer->progress();
+  launchpad->update(sequencer->track(2));
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  
+
 }
 
 

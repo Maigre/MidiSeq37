@@ -1,5 +1,5 @@
 #include "ofThread.h"
-#include "Semaphore.h"
+#include "../Utils/Semaphore.h"
 
 typedef void (*OnTickClbck)(uint64_t);
 

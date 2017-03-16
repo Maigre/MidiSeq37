@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include <stdint.h>
 #include "Sequencer.h"
-
+#include "Launchpad.h"
 
 
 class ofApp : public ofBaseApp{
@@ -27,5 +27,5 @@ class ofApp : public ofBaseApp{
 	private:
 
 		Sequencer* sequencer;
-
+		Launchpad* launchpad;
 };

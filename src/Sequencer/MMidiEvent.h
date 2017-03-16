@@ -1,8 +1,9 @@
+#pragma once
 #include "ofxMidi.h"
 
-class MidiEvent {
+class MMidiEvent {
   public:
-    MidiEvent();
+    MMidiEvent();
     void remove();
     bool isValid();
 
@@ -11,9 +12,9 @@ class MidiEvent {
 };
 
 
-class MidiNote : public MidiEvent {
+class MMidiNote : public MMidiEvent {
   public:
-    MidiNote(int _note, int _velo, int _length);
+    MMidiNote(int _note, int _velo, int _length);
     void play(ofxMidiOut* _out, int _chan, int tick);
     void stop();
 

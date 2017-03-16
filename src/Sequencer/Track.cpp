@@ -1,36 +1,29 @@
 #include "Track.h"
-#include "utils.h"
 #include<iostream>
 using namespace std;
 
-Track::Track(ofxMidiOut* output, int chan, int barPerLoop, int beatPerBar) {
+Track::Track(ofxMidiOut* output, int chan) {
   midiOut = output;
   channel = chan;
-  barSig = beatPerBar;
-  barLoop = barPerLoop;
-  tickLoop = beats(barSig)*barLoop;
 
-  position.setSignature(barLoop, barSig);
+  tickclock = new Clock(4, 4);
 
-  notesON.resize(tickLoop);
+  notesON.resize(tickclock->loopsize());
   notesOFF.resize(128);
   for(int k=0; k<128; k++) notesOFF[k] = NULL;
 
 }
 
-Position Track::getPosition() {
-  Position _pos;
-  tickLock.lock();
-  _pos = position;
-  tickLock.unlock();
-  return _pos;
+Clock* Track::clock() {
+  return tickclock;
 }
 
 void Track::progress() {
-  cout << " Loop: " << position.loop();
-  cout << " Bar: " << position.bar() << " Beat: " << position.beat();
-  cout << " Ticks: " << position.tick();
-  cout << " AbsTicks: " << position.ticks();
+  cout << " Loop: " << tickclock->loop();
+  cout << " Bar: " << tickclock->bar();
+  cout << " Beat: " << tickclock->beat();
+  cout << " Ticks: " << tickclock->tick();
+  cout << " AbsTicks: " << tickclock->ticks();
   cout << endl;
 }
 
@@ -38,20 +31,20 @@ void Track::onTick(uint64_t tick) {
 
   bool debug = true;
 
-  // Position
-  int t = position.set(tick);
+  // Clock
+  int t = tickclock->set(tick);
 
   // Notes ON
-  notesLock.lock();
+  lock();
   for (auto note = begin(notesON[t]); note != end(notesON[t]); /**/) {
     if (!(*note)->isValid()) note = notesON[t].erase(note);
     else {
       (*note)->play(midiOut, channel, t);     // NoteON
-      (*note)->stopTick = (t + (*note)->length) % tickLoop;
+      (*note)->stopTick = (t + (*note)->length) % tickclock->loopsize();
       notesOFF[(*note)->note] = (*note);      // Program NoteOFF
       if (debug) {
         cout << "Played note ON ";
-        progress(tick);
+        progress();
       }
       ++note;
     }
@@ -64,14 +57,11 @@ void Track::onTick(uint64_t tick) {
       notesOFF[k] = NULL;
       if (debug) {
         cout << "Played note OFF ";
-        progress(tick);
+        progress();
       }
     }
   }
-  notesLock.unlock();
-
-
-
+  unlock();
 
   // for (uint16_t k=0; k<cc[t].size(); k++)
   //   midiOut->sendControlChange(channel, cc[t][k]->control, cc[t][k]->value);
@@ -80,23 +70,23 @@ void Track::onTick(uint64_t tick) {
   //   midiOut->sendProgramChange(channel, pc[t][k]->value);
 }
 
-MidiNote* Track::addNote(int tick, int note, int duration) {
-  if (tick >= tickLoop) return NULL;
-  MidiNote* noteOn = new MidiNote(note, 64, duration);
-  notesLock.lock();
+MMidiNote* Track::addNote(int tick, int note, int duration) {
+  if (tick >= tickclock->loopsize()) return NULL;
+  MMidiNote* noteOn = new MMidiNote(note, 64, duration);
+  lock();
   notesON[tick].push_back(noteOn);
-  notesLock.unlock();
+  unlock();
   return noteOn;
 }
 
-std::vector<MidiNote*> Track::getNotes(int start, int size) {
-  std::vector<MidiNote*> notes;
+std::vector<MMidiNote*> Track::getNotes(int start, int size) {
+  std::vector<MMidiNote*> notes;
   int end = start + size-1;
-  if (end >= tickLoop) end = tickLoop-1;
-  notesLock.lock();
+  if (end >= tickclock->loopsize()) end = tickclock->loopsize()-1;
+  lock();
   for (int t=start; t<end; t++)
     for (uint16_t k=0; k<notesON[t].size(); k++)
       notes.push_back(notesON[t][k]);
-  notesLock.unlock();
+  unlock();
   return notes;
 }
