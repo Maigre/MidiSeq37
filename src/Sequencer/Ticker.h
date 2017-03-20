@@ -1,3 +1,4 @@
+#pragma once
 #include "ofThread.h"
 #include "../Utils/Semaphore.h"
 

@@ -2,15 +2,27 @@
 #include "../conf.h"
 
 
-Clock::Clock(int barsInLoop, int beatsInBar) {
+Clock::Clock() {
   tickMod = 0;
-  setSignature(barsInLoop, beatsInBar);
+
+  loopBars = 1; // Bars in a loop
+  barBeats = 4; // Beats in a bar
+
+  loopTicks = RESOLUTION*loopBars*barBeats;
+  barTicks = RESOLUTION*barBeats;
+
 }
 
-void Clock::setSignature(int barsInLoop, int beatsInBar) {
+void Clock::setLoopSize(int barsInLoop) {
   lock();
-  loopTicks = RESOLUTION*beatsInBar*barsInLoop;
-  barTicks = (RESOLUTION*barBeats);
+  loopTicks = loopTicks*barsInLoop/loopBars;
+  loopBars = barsInLoop;
+  unlock();
+}
+
+void Clock::setBarSize(int beatsInBar) {
+  lock();
+  loopTicks = loopTicks*beatsInBar/barBeats;
   barBeats = beatsInBar;
   unlock();
 }
@@ -56,6 +68,13 @@ int Clock::beat() {
   int b = ((tickMod % barTicks) / RESOLUTION)+1;
   unlock();
   return b;
+}
+
+int Clock::beatfraction(char divider) {
+  lock();
+  int q = (tickMod*divider/RESOLUTION)+1;
+  unlock();
+  return q;
 }
 
 int Clock::quarter() {

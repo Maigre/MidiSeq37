@@ -19,15 +19,40 @@ except ImportError:
 		sys.exit("error loading launchpad.py")
 
 import random, copy
-from pygame import time
+import time
 
 import liblo
-import json
+import mutex
+
+receivedMatrix = None
+lastProcessedMatrix = None
+myLock = mutex.mutex()
+
+# SEVER Thread
+class MyServer(liblo.ServerThread):
+    def __init__(self, port):
+        liblo.ServerThread.__init__(self, port)
+
+    @liblo.make_method('/set', 'iiii')
+    def setXY(self, path, args):
+		print ('set :', args)
+		x, y, r, g = args
+		matrixIN[x][y] = (r,g)
+
+    @liblo.make_method('/matrix', 's')
+    def setMatrix(self, path, args):
+		dataInput = args[0]
+		myLock.lock(copyRecv, dataInput)
+		myLock.unlock()
+
+def copyRecv(data):
+	global receivedMatrix
+	receivedMatrix = data
 
 # create server, listening on port 9000
 try:
-    server = liblo.Server(9000)
-except liblo.ServerError as err:
+    server = MyServer(9000)
+except ServerError as err:
     print(err)
     sys.exit()
 
@@ -51,26 +76,8 @@ for x in range(0, 8):
 	for y in range(0,8):
 		matrixIN[x].append((1,0))
 
-print (json.dumps(matrixIN))
+#print (json.dumps(matrixIN))
 
-def setXY(path, args):
-	print ('set :', args)
-	x, y, r, g = args
-	matrixIN[x][y] = (r,g)
-
-def setMatrix(path, args):
-	layout = json.loads(args[0])
-	print (layout)
-	for x in range(0, 8):
-		for y in range(0,8):
-			if len(layout[x][y]) == 2:
-				matrixIN[x][y] = (layout[x][y][0], layout[x][y][1])
-
-def ok(path, args):
-	print('yo')
-
-server.add_method("/set", 'iiii', setXY)
-server.add_method("/matrix", 's', setMatrix)
 
 # create an instance
 lp = launchpad.Launchpad();
@@ -81,8 +88,25 @@ print("Launchpad Mk1/S/Mini")
 lp.ButtonFlush()
 lp.Reset()
 butHit = 0
+
+def parseMatrix(args):
+	global receivedMatrix
+	global lastProcessedMatrix
+	if receivedMatrix != lastProcessedMatrix:
+		layout = receivedMatrix
+		for x in range(0, 8):
+			for y in range(0,8):
+				if len(layout) > 1:
+					data = layout[:2]
+					layout = layout[2:]
+				matrixIN[x][y] = (data[:1], data[1:])
+		lastProcessedMatrix = receivedMatrix
+
+server.start()
 while 1:
-	server.recv(100)
+
+	myLock.lock(parseMatrix, None)
+	myLock.unlock()
 
 	# Main Matrix update
 	for x in range(0,8):
@@ -90,8 +114,8 @@ while 1:
 			if matrixIN[x][y] != matrixOUT[x][y]:
 				lp.LedCtrlXY(x, y+1, matrixIN[x][y][0], matrixIN[x][y][1])
 				matrixOUT[x][y] = matrixIN[x][y]
-				#time.wait( 1 )
 
+	time.sleep(0.03)
 	but = lp.ButtonStateXY()
 	if but != []:
 		if but[2]:
@@ -103,5 +127,5 @@ while 1:
 		# 	break
 
 lp.Reset() # turn all LEDs off
-time.wait( 5 )
+time.sleep( 2 )
 lp.Close() # close the Launchpad (will quit with an error due to a PyGame bug)

@@ -2,4 +2,4 @@
 
 #define RESOLUTION 480
 
-#define FRAMERATE 10
+#define FRAMERATE 60

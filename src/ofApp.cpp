@@ -10,21 +10,20 @@ void ofApp::setup(){
   sequencer = new Sequencer(2);
   sequencer->start();
 
-  for (int k=0; k < (RESOLUTION*4*4); k+=RESOLUTION*2)
-    sequencer->track(2)->addNote(k, 48, RESOLUTION-1);
+  for (int k=0; k < (RESOLUTION*4*4); k+=RESOLUTION)
+    sequencer->track(1)->addNote(k, 48, RESOLUTION-1);
 
-  launchpad = new Launchpad(9000, 9001);
+  launchpad = new Launchpad(sequencer);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
   sequencer->progress();
-  launchpad->update(sequencer->track(2));
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+  launchpad->draw();
 }
 
 

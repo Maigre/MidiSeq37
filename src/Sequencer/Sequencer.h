@@ -1,3 +1,4 @@
+#pragma once
 #include "ofThread.h"
 #include "ofxMidi.h"
 #include "Ticker.h"
