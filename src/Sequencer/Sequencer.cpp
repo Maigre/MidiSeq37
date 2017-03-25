@@ -4,7 +4,7 @@ Sequencer::Sequencer(int size) {
 
   //Midi Out
   midiOut.listPorts();
-  midiOut.openPort(2);
+  midiOut.openPort(3);
 
   newTick = new Semaphore();
   lastTick = 0;

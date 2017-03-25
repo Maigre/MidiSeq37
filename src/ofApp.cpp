@@ -13,17 +13,19 @@ void ofApp::setup(){
   for (int k=0; k < (RESOLUTION*4*4); k+=RESOLUTION)
     sequencer->track(1)->addNote(k, 48, RESOLUTION-1);
 
-  launchpad = new Launchpad(sequencer);
+  launchpad1 = new Launchpad(sequencer, 0);
+  launchpad2 = new Launchpad(sequencer, 1);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-  sequencer->progress();
+  //sequencer->progress();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  launchpad->draw();
+  launchpad1->draw();
+  launchpad2->draw();
 }
 
 

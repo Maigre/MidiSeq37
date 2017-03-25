@@ -12,6 +12,7 @@
 #define COLOR_GREEN       60
 
 struct LpState {
+  char offset;
   char mode;
   char track;
   char page;
@@ -22,7 +23,7 @@ struct LpState {
 class Launchpad: public ofxMidiListener {
 
   public:
-    Launchpad(Sequencer* seq);
+    Launchpad(Sequencer* seq, char n);
     void draw();
     void clear();
 

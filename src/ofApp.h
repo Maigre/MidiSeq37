@@ -27,5 +27,6 @@ class ofApp : public ofBaseApp{
 	private:
 
 		Sequencer* sequencer;
-		Launchpad* launchpad;
+		Launchpad* launchpad1;
+		Launchpad* launchpad2;
 };
