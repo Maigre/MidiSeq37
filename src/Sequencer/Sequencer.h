@@ -6,6 +6,7 @@
 #include "../Utils/Semaphore.h"
 #include "../conf.h"
 
+
 class Sequencer : public ofThread {
 
   public:

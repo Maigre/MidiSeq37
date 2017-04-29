@@ -12,6 +12,9 @@ Track::Track(ofxMidiOut* output, int chan) {
   notesOFF.resize(128);
   for(int k=0; k<128; k++) notesOFF[k] = NULL;
 
+  state.page = 1;
+  state.zoom = 4;
+  state.basenote = 43;
 }
 
 Clock* Track::clock() {

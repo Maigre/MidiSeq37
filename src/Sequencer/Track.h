@@ -5,6 +5,12 @@
 #include "../Utils/Lockable.h"
 #include <mutex>
 
+struct TrState {
+  char page;
+  char zoom;
+  int basenote;
+};
+
 class Track : public Lockable {
 
   public:
@@ -16,6 +22,8 @@ class Track : public Lockable {
     MMidiNote* addNote(int tick, int note, int duration);
     std::vector<MMidiNote*> getNotes(int start, int size);
     std::vector<MMidiNote*> getNotes(int start, int size, int noteval);
+
+    TrState state;
 
   private:
     int channel;
