@@ -27,5 +27,6 @@
 
 #define BTN_STEPS_PAGE      0
 #define BTN_STEPS_LENGTH    1
+#define BTN_STEPS_ZOOM      5
 #define BTN_STEPS_NOTEUP    6
 #define BTN_STEPS_NOTEDOWN  7

@@ -39,11 +39,16 @@ class Mode_steps : public Mode_base {
       if (!pushed) return;
 
       // page select
-      if (state->lastButton(ROW_LEFT) == BTN_STEPS_PAGE) params->page = n+1;
+      if (state->lastButton(ROW_LEFT) == BTN_STEPS_PAGE)
+        params->page = n+1;
 
       // length select
       else if (state->lastButton(ROW_LEFT) == BTN_STEPS_LENGTH)
         state->activetrack()->clock()->setLoopSize(n+1);
+
+      // zoom select
+      else if (state->lastButton(ROW_LEFT) == BTN_STEPS_ZOOM)
+        params->zoom = n+1;
 
     };
 
@@ -117,6 +122,12 @@ class Mode_steps : public Mode_base {
         char nPages = track->clock()->beatsloop()*params->zoom/width_steps;
         for (uint k=0; k<width_steps; k++)
           if (k < nPages) extraBtns[ROW_TOP][k] = COLOR_AMBER;
+      }
+
+      // Zoom select
+      else if (state->lastButton(ROW_LEFT) == BTN_STEPS_ZOOM) {
+        for (uint k=0; k<width_steps; k++)
+          if (k <= params->zoom-1) extraBtns[ROW_TOP][k] = COLOR_YELLOW;
       }
 
     };
