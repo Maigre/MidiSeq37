@@ -10,7 +10,7 @@ void ofApp::setup(){
   sequencer = new Sequencer(16);
   sequencer->start();
 
-  for (int k=0; k < (RESOLUTION*4*4); k+=RESOLUTION)
+  for (int k=0; k < (RESOLUTION*4); k+=RESOLUTION)
     sequencer->track(1)->addNote(k, 36, RESOLUTION-1);
 
   launchpad = new Launchpad(sequencer);

@@ -19,6 +19,8 @@ class Track : public Lockable {
 
 
   private:
+    void resize(uint64_t t);
+
     int channel;
     ofxMidiOut* midiOut;
 

@@ -26,6 +26,14 @@ void Track::progress() {
   cout << endl;
 }
 
+void Track::resize(uint64_t t) {
+  if (t >= notesON.size()) {
+    uint oldsize = notesON.size();
+    notesON.resize(t+2);
+    for(uint k=oldsize; k<=t+1; k++) notesOFF[k] = NULL;
+  }
+}
+
 void Track::onTick(uint64_t tick) {
 
   bool debug = true;
@@ -35,7 +43,7 @@ void Track::onTick(uint64_t tick) {
 
   // Notes ON
   lock();
-  if (notesON.size() < tickclock->ticksloop()) notesON.resize(tickclock->ticksloop());
+  resize(tickclock->ticksloop());
   for (auto note = begin(notesON[t]); note != end(notesON[t]); /**/) {
     if (!(*note)->isValid()) note = notesON[t].erase(note);
     else {
@@ -71,8 +79,7 @@ void Track::onTick(uint64_t tick) {
 }
 
 MMidiNote* Track::addNote(uint tick, uint note, uint duration) {
-  if (tick >= tickclock->ticksloop()) return NULL;
-  //if (notesON.size() < tickclock->ticksloop()) notesON.resize(tickclock->ticksloop());
+  resize(tick);
   MMidiNote* noteOn = new MMidiNote(note, 64, duration);
   lock();
   notesON[tick].push_back(noteOn);
