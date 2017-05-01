@@ -1,0 +1,35 @@
+
+GENERAL
+  save / load
+
+  LAYOUT RIGHT
+  0 - PATT MODE (Home) -> Keep & select to edit
+  1 - Mixer
+  2 -
+  3 -
+  4 -
+  5 -
+  6 -
+  7 - Program change
+
+MODE PATTERN
+  play patt on click
+  edit patt on R-0 + click
+  play line on LEFT click
+  mute on top
+
+MODE STEP
+  page change (x)
+  program change
+  instrument defaults params (note layout / channel)
+  mute on top
+
+  LAYOUT LEFT
+    0 - Page selection (on top)
+    1 - Length (on top)
+    2 - Mixer per note ??
+    3 -
+    4 -
+    5 - Zoom (on top)
+    6 - Note Up
+    7 - Note Down

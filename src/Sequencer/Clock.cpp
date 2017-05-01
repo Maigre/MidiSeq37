@@ -5,7 +5,7 @@
 Clock::Clock() {
   tickMod = 0;
 
-  loopBars = 1; // Bars in a loop
+  loopBars = 2; // Bars in a loop
   barBeats = 4; // Beats in a bar
 
   loopTicks = RESOLUTION*loopBars*barBeats;
@@ -35,7 +35,21 @@ int Clock::set(uint64_t t) {
   return tickMod;
 }
 
-int Clock::loopsize() {
+int Clock::barsloop() {
+  lock();
+  int ls = loopBars;
+  unlock();
+  return ls;
+}
+
+int Clock::beatsloop() {
+  lock();
+  int ls = barBeats*loopBars;
+  unlock();
+  return ls;
+}
+
+int Clock::ticksloop() {
   lock();
   int ls = loopTicks;
   unlock();

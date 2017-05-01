@@ -2,6 +2,7 @@
 #include "../Sequencer/Track.h"
 #include "ofxMidi.h"
 #include "LPstate.h"
+#include "Mode_base.h"
 
 #define COLOR_OFF         12
 #define COLOR_RED_LOW     13
@@ -19,7 +20,7 @@ LAUNCHPAD ONE class
 class LPad: public ofxMidiListener {
 
   public:
-    LPad(LPstate* s, char outport, int n);
+    LPad(LPstate* s, Mode_base** m, char outport, int n);
     void draw();
 
   private:
@@ -27,10 +28,11 @@ class LPad: public ofxMidiListener {
     char colorRG(char red, char green);
     void newMidiMessage(ofxMidiMessage& eventArgs);
 
-    char matrix[8][8];
     char matrixOUT[8][8];
+    char extraBtnsOUT[2][8];
 
     LPstate* state;
+    Mode_base** modes;
     ofxMidiOut padOut;
     ofxMidiIn padIn;
 

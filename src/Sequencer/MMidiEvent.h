@@ -14,16 +14,16 @@ class MMidiEvent {
 
 class MMidiNote : public MMidiEvent {
   public:
-    MMidiNote(int _note, int _velo, int _length);
-    void play(ofxMidiOut* _out, int _chan, int tick);
+    MMidiNote(u_int _note, u_int _velo, u_int _length);
+    void play(ofxMidiOut* _out, u_int _chan, u_int tick);
     void stop();
 
-    int note;
-    int velocity;
-    int length;
-    int stopTick;
+    u_int note;
+    u_int velocity;
+    u_int length;
+    u_int stopTick;
 
   private:
     ofxMidiOut* out;
-    int channel;
+    u_int channel;
 };

@@ -1,5 +1,6 @@
 #include "LPad.h"
 #include "LPstate.h"
+#include "Mode_base.h"
 
 /*
 LAUNCHPAD ARRAY class
@@ -12,6 +13,8 @@ public:
 
 private:
   LPad* pads[4];
-  LPstate* state;
   char size;
+
+  LPstate* state;
+  Mode_base*  modes[16];
 };

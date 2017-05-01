@@ -8,13 +8,9 @@ Track::Track(ofxMidiOut* output, int chan) {
 
   tickclock = new Clock();
 
-  notesON.resize(tickclock->loopsize());
+  notesON.resize(tickclock->ticksloop());
   notesOFF.resize(128);
   for(int k=0; k<128; k++) notesOFF[k] = NULL;
-
-  state.page = 1;
-  state.zoom = 4;
-  state.basenote = 43;
 }
 
 Clock* Track::clock() {
@@ -43,7 +39,7 @@ void Track::onTick(uint64_t tick) {
     if (!(*note)->isValid()) note = notesON[t].erase(note);
     else {
       (*note)->play(midiOut, channel, t);     // NoteON
-      (*note)->stopTick = (t + (*note)->length) % tickclock->loopsize();
+      (*note)->stopTick = (t + (*note)->length) % tickclock->ticksloop();
       notesOFF[(*note)->note] = (*note);      // Program NoteOFF
       if (debug) {
         //cout << "Played note ON ";
@@ -54,7 +50,7 @@ void Track::onTick(uint64_t tick) {
   }
 
   // Notes OFF
-  for(int k=0; k<128; k++) {
+  for(uint k=0; k<128; k++) {
     if (notesOFF[k] != NULL && notesOFF[k]->stopTick == t) {
       notesOFF[k]->stop();
       notesOFF[k] = NULL;
@@ -74,7 +70,8 @@ void Track::onTick(uint64_t tick) {
 }
 
 MMidiNote* Track::addNote(int tick, int note, int duration) {
-  if (tick >= tickclock->loopsize()) return NULL;
+  if (tick >= tickclock->ticksloop()) return NULL;
+  //if (notesON.size() < tickclock->ticksloop()) notesON.resize(tickclock->ticksloop());
   MMidiNote* noteOn = new MMidiNote(note, 64, duration);
   lock();
   notesON[tick].push_back(noteOn);
@@ -89,7 +86,7 @@ std::vector<MMidiNote*> Track::getNotes(int start, int size) {
 std::vector<MMidiNote*> Track::getNotes(int start, int size, int noteval) {
   std::vector<MMidiNote*> notes;
   int end = start + size-1;
-  if (end >= tickclock->loopsize()) end = tickclock->loopsize()-1;
+  if (end >= tickclock->ticksloop()) end = tickclock->ticksloop()-1;
   lock();
   for (int t=start; t<end; t++)
     for (uint16_t k=0; k<notesON[t].size(); k++)

@@ -7,11 +7,11 @@ void ofApp::setup(){
   if (FRAMERATE > 60) ofSetVerticalSync(false);
   ofSetFrameRate(FRAMERATE);
 
-  sequencer = new Sequencer(2);
+  sequencer = new Sequencer(16);
   sequencer->start();
 
   for (int k=0; k < (RESOLUTION*4*4); k+=RESOLUTION)
-    sequencer->track(1)->addNote(k, 48, RESOLUTION-1);
+    sequencer->track(1)->addNote(k, 36, RESOLUTION-1);
 
   launchpad = new Launchpad(sequencer);
 }

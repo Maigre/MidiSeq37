@@ -3,13 +3,15 @@
 #include "../conf.h"
 #include "../Sequencer/MMidiEvent.h"
 #include <unistd.h>
+#include <string>
 
-LPad::LPad(LPstate* s, char outport, int n) {
+LPad::LPad(LPstate* s, Mode_base** m, char outport, int n) {
 
-  memset(matrix, 0, sizeof(matrix));
-  memset(matrixOUT, 0, sizeof(matrixOUT));
+  memset(matrixOUT,     COLOR_OFF, sizeof(matrixOUT));
+  memset(extraBtnsOUT,  COLOR_OFF, sizeof(extraBtnsOUT));
 
   state = s;
+  modes = m;
   offset = n;
 
   padOut.openPort(outport);
@@ -23,51 +25,66 @@ LPad::LPad(LPstate* s, char outport, int n) {
 
 void LPad::newMidiMessage(ofxMidiMessage& msg) {
 
-  cout << "Received: " << msg.status << " " << msg.pitch << " " << msg.velocity << endl;
+  //cout << "Received: " << msg.status << " " << msg.pitch << " " << msg.velocity << " " << msg.control << " " << msg.value << endl;
 
-  // 8x8 matrix
-  if (msg.status == 144) {
-    char xR, yR;
+  // 8x8 matrix & right col
+  if (msg.status == 144 )
+  {
+    // coords
     char x = msg.pitch % 16;
     char y = msg.pitch / 16;
 
-    // rotation
-    if (offset%2 == 0) { xR = y; yR = (7-x);}
-    else { xR = x; yR = y;}
+    // pushed
+    bool pushed = msg.velocity > 0;
 
-    // MODE_STEPS
-    if (state->mode == MODE_STEPS) {
+    // 8x8 matrix
+    if (x < 8) {
+      char xR, yR;
 
-      Track* track = state->activetrack();
+      // rotation
+      if (offset%2 == 0) { xR = y; yR = (7-x);}
+      else { xR = x; yR = y;}
 
-      int note = (7-yR)+track->state.basenote;
-      int step = (xR+offset*8)*RESOLUTION/track->state.zoom;
+      // offset
+      if (offset%2 == 1) { xR += 8; }
+      yR += (offset/2)*8;
 
-      if (msg.velocity > 0) {
-        int length = RESOLUTION/track->state.zoom;
-
-        std::vector<MMidiNote*> notes = track->getNotes(step, length, note);
-
-        if (notes.size() == 0) track->addNote(step, note, length-1);
-        else for (unsigned int k=0; k<notes.size(); k++) notes[k]->remove();
-      }
+      modes[state->currentmode]->inputMatrix(xR, yR, pushed);
     }
 
-    // MODE_MAIN_BARS
-    else if (state->mode == MODE_MAIN_BARS) {
+    // right col
+    else if (x == 8) {
 
+      // transform
+      char row, btn;
+      if (offset == 0)      {row = ROW_TOP;     btn = y;}
+      else if (offset == 1) {row = ROW_RIGHT;   btn = y;}
+      else if (offset == 2) {row = ROW_LEFT;    btn = y+8;}
+      else if (offset == 3) {row = ROW_BOTTOM;  btn = 15-y;}
+
+      // trigger
+      state->buttonRecord(row, btn, pushed);
+      modes[state->currentmode]->inputCommand(row, btn, pushed);
     }
+  }
 
-    // MODE_MAIN_MIX
-    else if (state->mode == MODE_MAIN_MIX) {
+  // top row
+  else if (msg.status == 176) {
 
-    }
+    //btn
+    char x = msg.control - 104;
+    bool pushed = msg.value > 0;
 
-    // MODE_MAIN_PATT
-    else if (state->mode == MODE_MAIN_PATT) {
+    // translate
+    char row, btn;
+    if (offset == 0)      {row = ROW_LEFT;    btn = 7-x;}
+    else if (offset == 1) {row = ROW_TOP;     btn = x+8;}
+    else if (offset == 2) {row = ROW_BOTTOM;  btn = 7-x;}
+    else if (offset == 3) {row = ROW_RIGHT;   btn = x+8;}
 
-    }
-
+    // trigger
+    state->buttonRecord(row, btn, pushed);
+    modes[state->currentmode]->inputCommand(row, btn, pushed);
   }
 }
 
@@ -76,45 +93,60 @@ char LPad::colorRG(char red, char green) {
 }
 
 void LPad::draw() {
-  // clear matrix
-  memset(matrix, COLOR_OFF, sizeof(matrix));
 
-  // MODE_STEPS
-  if (state->mode == MODE_STEPS) {
-    Track* track = state->activetrack();
-    int active_col = (track->clock()->beatfraction(track->state.zoom)-1);
+  char** matrix = modes[state->currentmode]->getMatrix(offset);
+  char** extraBtns = modes[state->currentmode]->getCommands(offset);
 
-    for (unsigned char x = 0; x < 8; x++) {
-      // get notes for current grid
-      std::vector<MMidiNote*> notes = track->getNotes((x+offset*8)*RESOLUTION/track->state.zoom, RESOLUTION/track->state.zoom);
-
-      for (unsigned char y = 0; y < 8; y++) {
-          // vertical red bar
-          if ((x+offset*8) == active_col) matrix[x][y] = COLOR_RED;
-
-          // notes green
-          for (unsigned int k=0; k<notes.size(); k++)
-            if (notes[k]->note == (7-y)+track->state.basenote) {
-              if (matrix[x][y] > COLOR_OFF) matrix[x][y] = COLOR_YELLOW;
-              else matrix[x][y] = COLOR_GREEN;
-            }
-      }
-    }
-  }
-
-
-  // Push Midi commands
+  // Push matrix
   char xR, yR;
-  for (unsigned char x = 0; x < 8; x++)
-    for (unsigned char y = 0; y < 8; y++)
-      if (matrixOUT[x][y] != matrix[x][y]) {
+  for (uint x = 0; x < 8; x++){
+    bool p = false;
+    for (uint y = 0; y < 8; y++)
+      //if (matrixOUT[x][y] != matrix[x][y]) {
+      if (true) {
         matrixOUT[x][y] = matrix[x][y];
 
         // rotation
-        if (offset%2 == 0) { xR = (7-y); yR = x; }
-        else { xR = x; yR = y; }
+        if (offset == 0) { xR = (7-y); yR = x; }
+        else if (offset == 1) { xR = x; yR = y; }
+        else if (offset == 2) { xR = x; yR = y; }
+        else if (offset == 3) { xR = x; yR = y; }
 
         // send midi cmd
         padOut.sendNoteOn(1, 16*yR+xR, matrixOUT[x][y]);
+        //usleep(1000);
       }
+  }
+
+  // Push extra buttons HORIZONTAL
+  for (uint b = 0; b < 8; b++)
+    //if (extraBtnsOUT[0][b] != extraBtns[0][b]) {
+    if (true) {
+      extraBtnsOUT[0][b] = extraBtns[0][b];
+
+      // send midi cmd
+      if (offset == 0)      padOut.sendNoteOn(1, 16*b+8, extraBtnsOUT[0][b]);
+      else if (offset == 1) padOut.sendControlChange(1, 104+b, extraBtnsOUT[0][b]);
+      else if (offset == 2) padOut.sendControlChange(1, 111-b, extraBtnsOUT[0][b]);
+      else if (offset == 3) padOut.sendNoteOn(1, 16*(7-b)+8, extraBtnsOUT[0][b]);
+      //usleep(1000);
+
+      if (offset == 0 && b == 6) cout << to_string(extraBtnsOUT[0][b]) << endl;
+
+    }
+
+  // Push extra buttons VERTICAL
+  for (uint b = 0; b < 8; b++)
+    //if (extraBtnsOUT[1][b] != extraBtns[1][b]) {
+    if (true) {
+      extraBtnsOUT[1][b] = extraBtns[1][b];
+
+      // send midi cmd
+      if (offset == 0)      padOut.sendControlChange(1, 111-b, extraBtnsOUT[1][b]);
+      else if (offset == 1) padOut.sendNoteOn(1, 16*b+8, extraBtnsOUT[1][b]);
+      else if (offset == 2) padOut.sendNoteOn(1, 16*(7-b)+8, extraBtnsOUT[1][b]);
+      else if (offset == 3) padOut.sendControlChange(1, 104+b, extraBtnsOUT[1][b]);
+      //usleep(1000);
+    }
+
 }
