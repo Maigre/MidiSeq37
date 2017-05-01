@@ -8,14 +8,14 @@
 class Track : public Lockable {
 
   public:
-    Track(ofxMidiOut* output, int chan);
+    Track(ofxMidiOut* output, uint chan);
     void progress();
     void onTick(uint64_t tick);
     Clock* clock();
 
-    MMidiNote* addNote(int tick, int note, int duration);
-    std::vector<MMidiNote*> getNotes(int start, int size);
-    std::vector<MMidiNote*> getNotes(int start, int size, int noteval);
+    MMidiNote* addNote(uint tick, uint note, uint duration);
+    std::vector<MMidiNote*> getNotes(uint start, uint size);
+    std::vector<MMidiNote*> getNotes(uint start, uint size, int noteval);
 
 
   private:

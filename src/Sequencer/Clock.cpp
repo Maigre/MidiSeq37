@@ -5,7 +5,7 @@
 Clock::Clock() {
   tickMod = 0;
 
-  loopBars = 2; // Bars in a loop
+  loopBars = 1; // Bars in a loop
   barBeats = 4; // Beats in a bar
 
   loopTicks = RESOLUTION*loopBars*barBeats;
@@ -13,21 +13,21 @@ Clock::Clock() {
 
 }
 
-void Clock::setLoopSize(int barsInLoop) {
+void Clock::setLoopSize(uint barsInLoop) {
   lock();
   loopTicks = loopTicks*barsInLoop/loopBars;
   loopBars = barsInLoop;
   unlock();
 }
 
-void Clock::setBarSize(int beatsInBar) {
+void Clock::setBarSize(uint beatsInBar) {
   lock();
   loopTicks = loopTicks*beatsInBar/barBeats;
   barBeats = beatsInBar;
   unlock();
 }
 
-int Clock::set(uint64_t t) {
+uint Clock::set(uint64_t t) {
   lock();
   tickAll = t;
   tickMod = t % loopTicks;
@@ -35,79 +35,79 @@ int Clock::set(uint64_t t) {
   return tickMod;
 }
 
-int Clock::barsloop() {
+uint Clock::barsloop() {
   lock();
-  int ls = loopBars;
+  uint ls = loopBars;
   unlock();
   return ls;
 }
 
-int Clock::beatsloop() {
+uint Clock::beatsloop() {
   lock();
-  int ls = barBeats*loopBars;
+  uint ls = barBeats*loopBars;
   unlock();
   return ls;
 }
 
-int Clock::ticksloop() {
+uint Clock::ticksloop() {
   lock();
-  int ls = loopTicks;
+  uint ls = loopTicks;
   unlock();
   return ls;
 }
 
-int Clock::ticks() {
+uint Clock::ticks() {
   lock();
-  int t = tickMod;
+  uint t = tickMod;
   unlock();
   return t;
 }
 
-int Clock::loop() {
+uint Clock::loop() {
   lock();
-  int l = (tickAll / loopTicks)+1;
+  uint l = (tickAll / loopTicks)+1;
   unlock();
   return l;
 }
 
-int Clock::bar() {
+uint Clock::bar() {
   lock();
-  int b = (tickMod / barTicks)+1;
+  uint b = (tickMod / barTicks)+1;
   unlock();
   return b;
 }
 
-int Clock::beat() {
+uint Clock::beat() {
   lock();
-  int b = ((tickMod % barTicks) / RESOLUTION)+1;
+  uint b = ((tickMod % barTicks) / RESOLUTION)+1;
   unlock();
   return b;
 }
 
-int Clock::beatfraction(char divider) {
+uint Clock::beatfraction(char divider) {
   lock();
-  int q = (tickMod*divider/RESOLUTION)+1;
+  uint q = (tickMod*divider/RESOLUTION)+1;
   unlock();
   return q;
 }
 
-int Clock::quarter() {
+uint Clock::quarter() {
   lock();
-  int q = (tickMod*4/RESOLUTION)+1;
+  uint q = (tickMod*4/RESOLUTION)+1;
   unlock();
   return q;
 }
 
-int Clock::eighth() {
+uint Clock::eighth() {
   lock();
-  int e = (tickMod*8/RESOLUTION)+1;
+  uint e = (tickMod*8/RESOLUTION)+1;
   unlock();
   return e;
 }
 
-int Clock::tick() {
+uint Clock::tick() {
   lock();
-  int t = (tickMod % barTicks) % RESOLUTION;
+  uint t = (tickMod % barTicks) % RESOLUTION;
   unlock();
   return t;
 }

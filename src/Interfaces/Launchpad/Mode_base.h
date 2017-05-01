@@ -11,10 +11,7 @@ class Mode_base : public Lockable {
     };
 
     virtual void refresh() = 0;
-    virtual char** getMatrix(uint offset) = 0;
-    virtual char** getCommands(uint offset) = 0;
-
-    virtual void inputMatrix(char x, char y, bool pushed) = 0;
+    virtual void inputMatrix(uint x, uint y, bool pushed) = 0;
 
     void inputCommand(char row, char btn, bool pushed) {
       if (row == ROW_TOP)         inputTop(btn, pushed);
@@ -22,23 +19,6 @@ class Mode_base : public Lockable {
       else if (row == ROW_RIGHT)  inputRight(btn, pushed);
       else if (row == ROW_BOTTOM) inputBottom(btn, pushed);
     }
-
-  protected:
-    LPstate* state;
-
-    virtual void inputLeft(char n, bool pushed) = 0;
-    virtual void inputTop(char n, bool pushed) = 0;
-
-    void inputBottom(char n, bool pushed) {
-      if (pushed) cout << "input bottom: " << std::to_string(n) << endl;
-    };
-
-    void inputRight(char n, bool pushed){
-      if (pushed) cout << "input right: " << std::to_string(n) << endl;
-    };
-
-    char matrix[16][16];
-    char extraBtns[4][16];
 
     // copy submatrix
     char** getMatrix(uint offset) {
@@ -78,6 +58,22 @@ class Mode_base : public Lockable {
           subcmds[1][k] = extraBtns[ROW_RIGHT][k+yShift];
 
       return subcmds;
+    };
+
+  protected:
+    LPstate* state;
+    char matrix[16][16];
+    char extraBtns[4][16];
+
+    virtual void inputLeft(uint n, bool pushed) = 0;
+    virtual void inputTop(uint n, bool pushed) = 0;
+
+    void inputBottom(uint n, bool pushed) {
+      if (pushed) cout << "input bottom: " << std::to_string(n) << endl;
+    };
+
+    void inputRight(uint n, bool pushed){
+      if (pushed) cout << "input right: " << std::to_string(n) << endl;
     };
 
 };

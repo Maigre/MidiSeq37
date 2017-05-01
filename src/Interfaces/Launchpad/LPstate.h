@@ -22,13 +22,13 @@ public:
     return sequencer->track(tracksel);
   };
 
-  void buttonRecord(char row, char btn, bool pushed) {
+  void buttonRecord(uint row, uint btn, uint pushed) {
     pushedBtns[row][btn] = pushed;
     if (pushed) pushedStack[row].push_front(btn);
     else pushedStack[row].remove(btn);
   }
 
-  char lastButton(char row) {
+  uint lastButton(uint row) {
     if (pushedStack[row].empty()) return BTN_NONE;
     else return pushedStack[row].front();
   }
@@ -37,10 +37,10 @@ public:
   uint        width;
   uint        height;
 
-  char        currentmode;
-  char        tracksel;
+  uint        currentmode;
+  uint        tracksel;
 
-  char         pushedBtns[4][16];
-  list<char>   pushedStack[4];
+  uint         pushedBtns[4][16];
+  list<uint>   pushedStack[4];
 
 };

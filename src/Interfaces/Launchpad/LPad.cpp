@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <string>
 
-LPad::LPad(LPstate* s, Mode_base** m, char outport, int n) {
+LPad::LPad(LPstate* s, Mode_base** m, char outport, uint n) {
 
   memset(matrixOUT,     COLOR_OFF, sizeof(matrixOUT));
   memset(extraBtnsOUT,  COLOR_OFF, sizeof(extraBtnsOUT));
@@ -56,7 +56,7 @@ void LPad::newMidiMessage(ofxMidiMessage& msg) {
     else if (x == 8) {
 
       // transform
-      char row, btn;
+      char row = 0, btn = 0;
       if (offset == 0)      {row = ROW_TOP;     btn = y;}
       else if (offset == 1) {row = ROW_RIGHT;   btn = y;}
       else if (offset == 2) {row = ROW_LEFT;    btn = y+8;}
@@ -76,7 +76,7 @@ void LPad::newMidiMessage(ofxMidiMessage& msg) {
     bool pushed = msg.value > 0;
 
     // translate
-    char row, btn;
+    char row = 0, btn = 0;
     if (offset == 0)      {row = ROW_LEFT;    btn = 7-x;}
     else if (offset == 1) {row = ROW_TOP;     btn = x+8;}
     else if (offset == 2) {row = ROW_BOTTOM;  btn = 7-x;}
@@ -98,9 +98,8 @@ void LPad::draw() {
   char** extraBtns = modes[state->currentmode]->getCommands(offset);
 
   // Push matrix
-  char xR, yR;
-  for (uint x = 0; x < 8; x++){
-    bool p = false;
+  char xR = 0, yR = 0;
+  for (uint x = 0; x < 8; x++)
     for (uint y = 0; y < 8; y++)
       //if (matrixOUT[x][y] != matrix[x][y]) {
       if (true) {
@@ -116,7 +115,6 @@ void LPad::draw() {
         padOut.sendNoteOn(1, 16*yR+xR, matrixOUT[x][y]);
         //usleep(1000);
       }
-  }
 
   // Push extra buttons HORIZONTAL
   for (uint b = 0; b < 8; b++)
@@ -130,9 +128,6 @@ void LPad::draw() {
       else if (offset == 2) padOut.sendControlChange(1, 111-b, extraBtnsOUT[0][b]);
       else if (offset == 3) padOut.sendNoteOn(1, 16*(7-b)+8, extraBtnsOUT[0][b]);
       //usleep(1000);
-
-      if (offset == 0 && b == 6) cout << to_string(extraBtnsOUT[0][b]) << endl;
-
     }
 
   // Push extra buttons VERTICAL

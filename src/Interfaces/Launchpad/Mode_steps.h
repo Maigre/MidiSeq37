@@ -2,9 +2,9 @@
 #include "Mode_base.h"
 
 struct Mode_steps_params {
-  char page;
-  char zoom;
-  char notes[16];
+  uint page;
+  uint zoom;
+  uint notes[16];
 };
 
 class Mode_steps : public Mode_base {
@@ -15,16 +15,16 @@ class Mode_steps : public Mode_base {
       params->zoom = 4;
 
       int topnote = 43;
-      for (int k=0; k<16; k++)
+      for (uint k=0; k<16; k++)
         params->notes[k] = topnote-k;
     };
 
-    void inputMatrix(char x, char y, bool pushed) {
+    void inputMatrix(uint x, uint y, bool pushed) {
       if (!pushed) return;
 
-      int note = params->notes[y];
-      int step = (x + (params->page-1)*state->width*8) * RESOLUTION / params->zoom;
-      int length = RESOLUTION / params->zoom;
+      uint note = params->notes[y];
+      uint step = (x + (params->page-1)*state->width*8) * RESOLUTION / params->zoom;
+      uint length = RESOLUTION / params->zoom;
 
       Track* track = state->activetrack();
       std::vector<MMidiNote*> notes = track->getNotes(step, length, note);
@@ -35,7 +35,7 @@ class Mode_steps : public Mode_base {
     };
 
     // TOP pushed
-    void inputTop(char n, bool pushed) {
+    void inputTop(uint n, bool pushed) {
       if (!pushed) return;
 
       // page select
@@ -48,17 +48,17 @@ class Mode_steps : public Mode_base {
     };
 
     // LEFT pushed
-    void inputLeft(char n, bool pushed){
+    void inputLeft(uint n, bool pushed){
       if (!pushed) return;
 
       // increase notes
       if (n == BTN_STEPS_NOTEUP)
-        for (int k=0; k<16; k++)
+        for (uint k=0; k<16; k++)
           params->notes[k]++;
 
       // decrease notes
       else if (n == BTN_STEPS_NOTEDOWN)
-        for (int k=0; k<16; k++)
+        for (uint k=0; k<16; k++)
           params->notes[k]--;
 
     };
@@ -76,7 +76,7 @@ class Mode_steps : public Mode_base {
       uint height_steps = (state->height*8);
 
       // STEPS matrix
-      int active_col = (track->clock()->beatfraction(params->zoom)-1);
+      uint active_col = (track->clock()->beatfraction(params->zoom)-1);
       uint xShift = (params->page-1)*width_steps;
       uint stepSize = RESOLUTION/params->zoom;
 
@@ -106,7 +106,7 @@ class Mode_steps : public Mode_base {
       // Page select
       if (state->lastButton(ROW_LEFT) == BTN_STEPS_PAGE) {
         char nPages = track->clock()->beatsloop()*params->zoom/width_steps;
-        for (char k=0; k<width_steps; k++)
+        for (uint k=0; k<width_steps; k++)
           if (k == params->page-1) extraBtns[ROW_TOP][k] = COLOR_RED;
           else if (k < nPages) extraBtns[ROW_TOP][k] = COLOR_GREEN;
           //else extraBtns[ROW_TOP][k] = COLOR_YELLOW;
@@ -115,7 +115,7 @@ class Mode_steps : public Mode_base {
       // Length select
       else if (state->lastButton(ROW_LEFT) == BTN_STEPS_LENGTH) {
         char nPages = track->clock()->beatsloop()*params->zoom/width_steps;
-        for (char k=0; k<width_steps; k++)
+        for (uint k=0; k<width_steps; k++)
           if (k < nPages) extraBtns[ROW_TOP][k] = COLOR_AMBER;
       }
 

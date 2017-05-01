@@ -2,7 +2,7 @@
 #include<iostream>
 using namespace std;
 
-Track::Track(ofxMidiOut* output, int chan) {
+Track::Track(ofxMidiOut* output, uint chan) {
   midiOut = output;
   channel = chan;
 
@@ -10,7 +10,7 @@ Track::Track(ofxMidiOut* output, int chan) {
 
   notesON.resize(tickclock->ticksloop());
   notesOFF.resize(128);
-  for(int k=0; k<128; k++) notesOFF[k] = NULL;
+  for(uint k=0; k<128; k++) notesOFF[k] = NULL;
 }
 
 Clock* Track::clock() {
@@ -31,10 +31,11 @@ void Track::onTick(uint64_t tick) {
   bool debug = true;
 
   // Clock
-  int t = tickclock->set(tick);
+  uint t = tickclock->set(tick);
 
   // Notes ON
   lock();
+  if (notesON.size() < tickclock->ticksloop()) notesON.resize(tickclock->ticksloop());
   for (auto note = begin(notesON[t]); note != end(notesON[t]); /**/) {
     if (!(*note)->isValid()) note = notesON[t].erase(note);
     else {
@@ -69,7 +70,7 @@ void Track::onTick(uint64_t tick) {
   //   midiOut->sendProgramChange(channel, pc[t][k]->value);
 }
 
-MMidiNote* Track::addNote(int tick, int note, int duration) {
+MMidiNote* Track::addNote(uint tick, uint note, uint duration) {
   if (tick >= tickclock->ticksloop()) return NULL;
   //if (notesON.size() < tickclock->ticksloop()) notesON.resize(tickclock->ticksloop());
   MMidiNote* noteOn = new MMidiNote(note, 64, duration);
@@ -79,18 +80,18 @@ MMidiNote* Track::addNote(int tick, int note, int duration) {
   return noteOn;
 }
 
-std::vector<MMidiNote*> Track::getNotes(int start, int size) {
+std::vector<MMidiNote*> Track::getNotes(uint start, uint size) {
   return getNotes(start, size, -1);
 }
 
-std::vector<MMidiNote*> Track::getNotes(int start, int size, int noteval) {
+std::vector<MMidiNote*> Track::getNotes(uint start, uint size, int noteval) {
   std::vector<MMidiNote*> notes;
-  int end = start + size-1;
-  if (end >= tickclock->ticksloop()) end = tickclock->ticksloop()-1;
+  uint end = start + size-1;
+  if (end >= notesON.size()) end = notesON.size()-1;
   lock();
-  for (int t=start; t<end; t++)
+  for (uint t=start; t<end; t++)
     for (uint16_t k=0; k<notesON[t].size(); k++)
-      if (noteval < 0 || noteval == notesON[t][k]->note)
+      if (noteval < 0 || (uint)noteval == notesON[t][k]->note)
         if (notesON[t][k]->isValid())
           notes.push_back(notesON[t][k]);
   unlock();

@@ -5,32 +5,32 @@ class Clock : public Lockable {
 
     // config
     Clock();
-    void setLoopSize(int barsInLoop);
-    void setBarSize(int beatsInBar);
+    void setLoopSize(uint barsInLoop);
+    void setBarSize(uint beatsInBar);
 
     // update
-    int set(uint64_t t);
+    uint set(uint64_t t);
 
     // info
-    int barsloop();    // number of bar in a loop
-    int beatsloop();   // number of beat in a loop
-    int ticksloop();  // number of ticks in a loop
-    int ticks();      // current tick in ticksloop
+    uint barsloop();    // number of bar in a loop
+    uint beatsloop();   // number of beat in a loop
+    uint ticksloop();  // number of ticks in a loop
+    uint ticks();      // current tick in ticksloop
 
     // progression
-    int loop();
-    int bar();
-    int beat();
-    int beatfraction(char divider);
-    int tick();
-    int quarter();
-    int eighth();
+    uint loop();
+    uint bar();
+    uint beat();
+    uint beatfraction(char divider);
+    uint tick();
+    uint quarter();
+    uint eighth();
 
   private:
     uint64_t tickAll;
-    int tickMod;
-    int loopTicks;
-    int loopBars;
-    int barTicks;
-    int barBeats;
+    uint tickMod;
+    uint loopTicks;
+    uint loopBars;
+    uint barTicks;
+    uint barBeats;
 };

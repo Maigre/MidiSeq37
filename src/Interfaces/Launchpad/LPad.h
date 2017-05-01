@@ -4,14 +4,6 @@
 #include "LPstate.h"
 #include "Mode_base.h"
 
-#define COLOR_OFF         12
-#define COLOR_RED_LOW     13
-#define COLOR_RED         15
-#define COLOR_AMBER_LOW   29
-#define COLOR_AMBER       63
-#define COLOR_YELLOW      62
-#define COLOR_GREEN_LOW   28
-#define COLOR_GREEN       60
 
 /*
 LAUNCHPAD ONE class
@@ -20,7 +12,7 @@ LAUNCHPAD ONE class
 class LPad: public ofxMidiListener {
 
   public:
-    LPad(LPstate* s, Mode_base** m, char outport, int n);
+    LPad(LPstate* s, Mode_base** m, char outport, uint n);
     void draw();
 
   private:
@@ -36,5 +28,5 @@ class LPad: public ofxMidiListener {
     ofxMidiOut padOut;
     ofxMidiIn padIn;
 
-    int offset;
+    uint offset;
 };

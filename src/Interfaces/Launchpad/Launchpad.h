@@ -13,7 +13,7 @@ public:
 
 private:
   LPad* pads[4];
-  char size;
+  uint size;
 
   LPstate* state;
   Mode_base*  modes[16];
