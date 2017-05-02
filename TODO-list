@@ -21,13 +21,11 @@ MODE PATTERN
 MODE STEP
   program change
   instrument defaults params (note layout / channel)
-  mute on top
-  progress on top
 
   LAYOUT LEFT
-    0 - Page selection (on top)
-    1 - Length (on top)
-    2 - Zoom (on top)
+    0 - Page + length selection (on top)
+    1 - Zoom (on top)
+    2 -
     3 -
     4 -
     5 - Midi Channel (on top)

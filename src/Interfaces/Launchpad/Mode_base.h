@@ -65,15 +65,25 @@ class Mode_base : public Lockable {
     char matrix[16][16];
     char extraBtns[4][16];
 
-    virtual void inputLeft(uint n, bool pushed) = 0;
-    virtual void inputTop(uint n, bool pushed) = 0;
+    virtual void inputLeft(uint n, bool pushed){
+      if (pushed) cout << "input left: " << std::to_string(n) << endl;
+    };
 
-    void inputBottom(uint n, bool pushed) {
+    virtual void inputTop(uint n, bool pushed){
+      if (pushed) cout << "input top: " << std::to_string(n) << endl;
+    };
+
+    virtual void inputBottom(uint n, bool pushed) {
       if (pushed) cout << "input bottom: " << std::to_string(n) << endl;
     };
 
-    void inputRight(uint n, bool pushed){
+    virtual void inputRight(uint n, bool pushed){
       if (pushed) cout << "input right: " << std::to_string(n) << endl;
     };
+
+    uint blink(uint color) {
+      if (state->activetrack()->clock()->beatfraction(2)%2 == 0) return color;
+      else return COLOR_OFF;
+    }
 
 };
