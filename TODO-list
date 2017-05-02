@@ -27,9 +27,9 @@ MODE STEP
   LAYOUT LEFT
     0 - Page selection (on top)
     1 - Length (on top)
-    2 - 
+    2 - Zoom (on top)
     3 -
     4 -
-    5 - Zoom (on top)
+    5 - Midi Channel (on top)
     6 - Note Up
     7 - Note Down

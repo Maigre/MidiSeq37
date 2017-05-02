@@ -104,3 +104,16 @@ std::vector<MMidiNote*> Track::getNotes(uint start, uint size, int noteval) {
   unlock();
   return notes;
 }
+
+uint Track::getChannel() {
+  lock();
+  uint ch = channel;
+  unlock();
+  return ch;
+}
+
+void Track::setChannel(uint ch) {
+  lock();
+  channel = ch;
+  unlock();
+}

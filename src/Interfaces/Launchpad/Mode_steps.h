@@ -50,6 +50,10 @@ class Mode_steps : public Mode_base {
       else if (state->lastButton(ROW_LEFT) == BTN_STEPS_ZOOM)
         params->zoom = n+1;
 
+      // channel select
+      else if (state->lastButton(ROW_LEFT) == BTN_STEPS_CHANNEL)
+        state->activetrack()->setChannel(n+1);
+
     };
 
     // LEFT pushed
@@ -128,6 +132,12 @@ class Mode_steps : public Mode_base {
       else if (state->lastButton(ROW_LEFT) == BTN_STEPS_ZOOM) {
         for (uint k=0; k<width_steps; k++)
           if (k <= params->zoom-1) extraBtns[ROW_TOP][k] = COLOR_YELLOW;
+      }
+
+      // Channel select
+      else if (state->lastButton(ROW_LEFT) == BTN_STEPS_CHANNEL) {
+        for (uint k=0; k<width_steps; k++)
+          if (k == track->getChannel()-1) extraBtns[ROW_TOP][k] = COLOR_RED;
       }
 
     };

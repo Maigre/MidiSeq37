@@ -17,6 +17,9 @@ class Track : public Lockable {
     std::vector<MMidiNote*> getNotes(uint start, uint size);
     std::vector<MMidiNote*> getNotes(uint start, uint size, int noteval);
 
+    void setChannel(uint ch);
+    uint getChannel();
+
 
   private:
     void resize(uint64_t t);
