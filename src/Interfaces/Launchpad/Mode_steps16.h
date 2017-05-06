@@ -2,6 +2,7 @@
 #include "Mode_base.h"
 
 struct Mode_steps_params {
+  uint width;
   uint notes[16];
   uint zoom;
   uint activepage;
@@ -12,6 +13,7 @@ class Mode_steps16 : public Mode_base {
   public:
     Mode_steps16(LPstate* st) : Mode_base(st) {
       params = new Mode_steps_params();
+      params->width = 16;
       params->zoom = 4;
       params->activepage = 1;
       params->activemenu = BTN_STEPS_PAGE;
@@ -25,7 +27,7 @@ class Mode_steps16 : public Mode_base {
       if (!pushed) return;
 
       uint note = params->notes[y];
-      uint step = (x + (params->activepage-1)*state->width*8) * RESOLUTION / params->zoom;
+      uint step = (x + (params->activepage-1)*params->width) * RESOLUTION / params->zoom;
       uint length = RESOLUTION / params->zoom;
 
       Track* track = state->activetrack();
@@ -39,7 +41,6 @@ class Mode_steps16 : public Mode_base {
     // TOP pushed
     void inputTop(uint n, bool pushed) {
       if (!pushed) return;
-      uint width_steps = (state->width*8);
 
       // ActiveMenu
       if (state->lastButton(ROW_LEFT) == BTN_NONE) {
@@ -93,15 +94,14 @@ class Mode_steps16 : public Mode_base {
 
       // load
       Track* track = state->activetrack();
-      uint width_steps = (state->width*8);
       uint height_steps = (state->height*8);
 
       // STEPS matrix
       uint active_col = (track->clock()->beatfraction(params->zoom)-1);
-      uint xShift = (params->activepage-1)*width_steps;
+      uint xShift = (params->activepage-1)*params->width;
       uint stepSize = RESOLUTION/params->zoom;
 
-      for (uint x = 0; x < width_steps; x++) {
+      for (uint x = 0; x < params->width; x++) {
         // get notes for current grid
         uint realcol = x+xShift;
         std::vector<MMidiNote*> notes = track->getNotes(realcol*stepSize, stepSize);
@@ -132,19 +132,19 @@ class Mode_steps16 : public Mode_base {
       // TOP
       // Zoom select
       if (state->lastButton(ROW_LEFT) == BTN_STEPS_ZOOM) {
-        for (uint k=0; k<width_steps; k++)
+        for (uint k=0; k<params->width; k++)
           if (k <= params->zoom-1) extraBtns[ROW_TOP][k] = COLOR_YELLOW;
       }
 
       // Channel select
       else if (state->lastButton(ROW_LEFT) == BTN_STEPS_CHANNEL) {
-        for (uint k=0; k<width_steps; k++)
+        for (uint k=0; k<params->width; k++)
           if (k == track->getChannel()-1) extraBtns[ROW_TOP][k] = COLOR_RED;
       }
 
       // Page & Length ActiveMenu
       else if (params->activemenu == BTN_STEPS_PAGE) {
-        uint nPages = track->clock()->beatsloop()*params->zoom/width_steps;
+        uint nPages = track->clock()->beatsloop()*params->zoom/params->width;
         uint active_page = active_col/16;
         for (uint k=0; k<8; k++)
           if (k == params->activepage-1) {
