@@ -50,10 +50,6 @@ class Mode_steps : public Mode_base {
           else state->activetrack()->clock()->setLoopSize(n-7);
       }
 
-      // 8-ONLY: Length on 8 width Pad
-      else if (width_steps == 8 && state->lastButton(ROW_LEFT) == BTN_STEPS_PAGE)
-        state->activetrack()->clock()->setLoopSize(n+1);
-
       // zoom select
       else if (state->lastButton(ROW_LEFT) == BTN_STEPS_ZOOM)
         params->zoom = n+1;
@@ -146,13 +142,6 @@ class Mode_steps : public Mode_base {
           if (k == track->getChannel()-1) extraBtns[ROW_TOP][k] = COLOR_RED;
       }
 
-      // 8-ONLY: Length submenu (on press page if 8 width LP only)
-      else if (width_steps == 8 && state->lastButton(ROW_LEFT) == BTN_STEPS_PAGE) {
-        char nPages = track->clock()->beatsloop()*params->zoom/width_steps;
-        for (uint k=0; k<width_steps; k++)
-          if (k < nPages) extraBtns[ROW_TOP][k] = COLOR_AMBER;
-      }
-
       // Page & Length ActiveMenu
       else if (params->activemenu == BTN_STEPS_PAGE) {
         uint nPages = track->clock()->beatsloop()*params->zoom/width_steps;
@@ -167,10 +156,8 @@ class Mode_steps : public Mode_base {
             else extraBtns[ROW_TOP][k] = COLOR_GREEN;
           }
 
-        // 16-ONLY:
-        if (width_steps > 8)  // 16 width LP -> draw length alongside pages
-          for (uint k=0; k<8; k++)
-            if (k < track->clock()->barsloop()) extraBtns[ROW_TOP][k+8] = COLOR_AMBER;
+        for (uint k=0; k<8; k++)
+          if (k < track->clock()->barsloop()) extraBtns[ROW_TOP][k+8] = COLOR_AMBER;
       }
 
     };

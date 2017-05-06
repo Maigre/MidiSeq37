@@ -10,7 +10,7 @@
 class Sequencer : public ofThread {
 
   public:
-    Sequencer(int size);
+    Sequencer(uint size, uint midiout);
     void setBPM(int _bpm);
     void progress();
     void start();

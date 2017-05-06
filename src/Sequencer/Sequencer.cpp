@@ -1,10 +1,9 @@
 #include "Sequencer.h"
 
-Sequencer::Sequencer(int size) {
+Sequencer::Sequencer(uint size, uint midiout) {
 
   //Midi Out
-  midiOut.listPorts();
-  midiOut.openPort(3);
+  midiOut.openPort(midiout);
 
   newTick = new Semaphore();
   lastTick = 0;

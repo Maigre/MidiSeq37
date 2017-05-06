@@ -1,5 +1,6 @@
 #include "ofApp.h"
 #include "conf.h"
+#include "ofxMidi.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -7,7 +8,18 @@ void ofApp::setup(){
   if (FRAMERATE > 60) ofSetVerticalSync(false);
   ofSetFrameRate(FRAMERATE);
 
-  sequencer = new Sequencer(16);
+  // LIST midi port
+  ofxMidiOut::listPorts();
+
+  // Find Midi OUT
+  uint portout=0;
+  for (char port=0; port<ofxMidiOut::getNumPorts(); port++)
+    if (ofxMidiOut::getPortName(port).find(MIDI_OUT_NAME) != string::npos) {
+      portout = port;
+      break;
+    }
+
+  sequencer = new Sequencer(16, portout);
   sequencer->start();
 
   for (int k=0; k < (RESOLUTION*4); k+=RESOLUTION)
