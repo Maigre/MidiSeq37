@@ -1,10 +1,10 @@
 #include "Modes.h"
 #include "Launchpad.h"
-#include "Mode_steps.h"
+#include "Mode_steps16.h"
 
 Launchpad::Launchpad(Sequencer* seq) {
   state = new LPstate(seq);
-  modes[MODE_STEPS] = new Mode_steps(state);
+  modes[MODE_STEPS] = new Mode_steps16(state);
 
   uint offset = 0;
   for (char port=0; port<ofxMidiOut::getNumPorts(); port++)

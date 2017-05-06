@@ -8,9 +8,9 @@ struct Mode_steps_params {
   uint activemenu;
 };
 
-class Mode_steps : public Mode_base {
+class Mode_steps16 : public Mode_base {
   public:
-    Mode_steps(LPstate* st) : Mode_base(st) {
+    Mode_steps16(LPstate* st) : Mode_base(st) {
       params = new Mode_steps_params();
       params->zoom = 4;
       params->activepage = 1;
