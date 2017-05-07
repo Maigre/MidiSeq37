@@ -11,22 +11,16 @@
 
 // MODES
 #define MODE_NONE 0
-#define MODE_STEPS 10
+#define MODE_STEPS 1
+#define MODE_PATTS 2
 
-#define MODE_DEFAULT MODE_STEPS
-
-
+#define MODE_DEFAULT MODE_PATTS
 
 // BTNS
 #define BTN_NONE    255
 
+// ROWS
 #define ROW_LEFT    0
 #define ROW_TOP     1
 #define ROW_RIGHT   2
 #define ROW_BOTTOM  3
-
-#define BTN_STEPS_PAGE      0
-#define BTN_STEPS_ZOOM      1
-#define BTN_STEPS_CHANNEL   5
-#define BTN_STEPS_NOTEUP    6
-#define BTN_STEPS_NOTEDOWN  7

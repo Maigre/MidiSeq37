@@ -3,8 +3,8 @@
 #include "Modes.h"
 #include <list>
 
-#include "../Sequencer/Sequencer.h"
-#include "../Sequencer/Track.h"
+#include "../../Sequencer/Sequencer.h"
+#include "../../Sequencer/Track.h"
 
 
 class LPstate {
@@ -14,6 +14,7 @@ public:
     sequencer = seq;
     currentmode = MODE_DEFAULT;
     tracksel = 1;
+    pattsel = 0;
     height = 0;
     width = 0;
   };
@@ -39,6 +40,7 @@ public:
 
   uint        currentmode;
   uint        tracksel;
+  uint        pattsel;
 
   uint         pushedBtns[4][16];
   list<uint>   pushedStack[4];

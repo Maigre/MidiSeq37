@@ -2,6 +2,7 @@
 #include "ofxMidi.h"
 #include "MMidiEvent.h"
 #include "Clock.h"
+#include "Pattern.h"
 #include "../Utils/Lockable.h"
 #include <mutex>
 
@@ -13,7 +14,12 @@ class Track : public Lockable {
     void onTick(uint64_t tick);
     Clock* clock();
 
+    void selectPattern(uint index);
+    bool isPattActive(uint index);
+    bool isPattValid(uint index);
+
     MMidiNote* addNote(uint tick, uint note, uint duration);
+    void copyNotes(uint startCopy, uint startPast, uint count);
     std::vector<MMidiNote*> getNotes(uint start, uint size);
     std::vector<MMidiNote*> getNotes(uint start, uint size, int noteval);
 
@@ -23,13 +29,15 @@ class Track : public Lockable {
 
   private:
     void resize(uint64_t t);
+    Pattern* activePattern();
 
     int channel;
     ofxMidiOut* midiOut;
 
-    Clock* tickclock;
+    Clock* trackclock;
 
-    std::vector<std::vector<MMidiNote*>> notesON;
     std::vector<MMidiNote*> notesOFF;
-
+    std::vector<Pattern*> patterns;
+    Pattern* currentPattern;
+    uint pattIndex;
 };

@@ -1,8 +1,8 @@
-#include "../Sequencer/Sequencer.h"
-#include "../Sequencer/Track.h"
+#include "../../Sequencer/Sequencer.h"
+#include "../../Sequencer/Track.h"
 #include "ofxMidi.h"
 #include "LPstate.h"
-#include "Mode_base.h"
+#include "Mode_abstract.h"
 
 
 /*
@@ -12,7 +12,7 @@ LAUNCHPAD ONE class
 class LPad: public ofxMidiListener {
 
   public:
-    LPad(LPstate* s, Mode_base** m, char outport, uint n);
+    LPad(LPstate* s, Mode_abstract** m, char outport, uint n);
     void draw();
 
   private:
@@ -24,7 +24,7 @@ class LPad: public ofxMidiListener {
     char extraBtnsOUT[2][8];
 
     LPstate* state;
-    Mode_base** modes;
+    Mode_abstract** modes;
     ofxMidiOut padOut;
     ofxMidiIn padIn;
 

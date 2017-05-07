@@ -1,16 +1,23 @@
 #pragma once
+#include "Modes.h"
 #include "LPstate.h"
 
-class Mode_base : public Lockable {
+class Mode_abstract {
   public:
-    Mode_base(LPstate* s) {
+    Mode_abstract(LPstate* s) {
       state = s;
 
       memset(matrix,    COLOR_OFF, sizeof(matrix));
       memset(extraBtns, COLOR_OFF, sizeof(extraBtns));
     };
 
-    virtual void refresh() = 0;
+    // DRAW
+    virtual void refresh() {
+      // clear
+      memset(matrix,    COLOR_OFF, sizeof(matrix));
+      memset(extraBtns, COLOR_OFF, sizeof(extraBtns));
+    };
+
     virtual void inputMatrix(uint x, uint y, bool pushed) = 0;
 
     void inputCommand(char row, char btn, bool pushed) {
@@ -63,7 +70,7 @@ class Mode_base : public Lockable {
   protected:
     LPstate* state;
     char matrix[16][16];
-    char extraBtns[4][16];
+    char extraBtns[16][16];
 
     virtual void inputLeft(uint n, bool pushed){
       if (pushed) cout << "input left: " << std::to_string(n) << endl;

@@ -1,11 +1,13 @@
+
 #include "LPad.h"
+#include <unistd.h>
+#include <string>
 #include "Modes.h"
 #include "../conf.h"
 #include "../Sequencer/MMidiEvent.h"
-#include <unistd.h>
-#include <string>
 
-LPad::LPad(LPstate* s, Mode_base** m, char outport, uint n) {
+
+LPad::LPad(LPstate* s, Mode_abstract** m, char outport, uint n) {
 
   memset(matrixOUT,     COLOR_OFF, sizeof(matrixOUT));
   memset(extraBtnsOUT,  COLOR_OFF, sizeof(extraBtnsOUT));
@@ -19,17 +21,17 @@ LPad::LPad(LPstate* s, Mode_base** m, char outport, uint n) {
   padIn.openPort(ofxMidiOut::getPortName(outport));
   padIn.addListener(this);
 
-  cout << "ADDED PAD " << offset << " : " << ofxMidiOut::getPortName(outport) << endl;
+  cout << "ADDED PAD " << offset;
+  cout << " : " << ofxMidiOut::getPortName(outport) << endl;
 
 }
 
 void LPad::newMidiMessage(ofxMidiMessage& msg) {
 
-  //cout << "Received: " << msg.status << " " << msg.pitch << " " << msg.velocity << " " << msg.control << " " << msg.value << endl;
+  // cout << "Received: " << msg.status << " " << msg.pitch << " " << msg.velocity << " " << msg.control << " " << msg.value << endl;
 
   // 8x8 matrix & right col
-  if (msg.status == 144 )
-  {
+  if (msg.status == 144) {
     // coords
     char x = msg.pitch % 16;
     char y = msg.pitch / 16;
@@ -42,8 +44,8 @@ void LPad::newMidiMessage(ofxMidiMessage& msg) {
       char xR, yR;
 
       // rotation
-      if (offset%2 == 0) { xR = y; yR = (7-x);}
-      else { xR = x; yR = y;}
+      if (offset%2 == 0) { xR = y; yR = (7-x); }
+      else { xR = x; yR = y; }
 
       // offset
       if (offset%2 == 1) { xR += 8; }
@@ -113,35 +115,42 @@ void LPad::draw() {
 
         // send midi cmd
         padOut.sendNoteOn(1, 16*yR+xR, matrixOUT[x][y]);
-        //usleep(1000);
+        // usleep(1000);
       }
 
   // Push extra buttons HORIZONTAL
   for (uint b = 0; b < 8; b++)
-    //if (extraBtnsOUT[0][b] != extraBtns[0][b]) {
+    // if (extraBtnsOUT[0][b] != extraBtns[0][b]) {
     if (true) {
       extraBtnsOUT[0][b] = extraBtns[0][b];
 
       // send midi cmd
-      if (offset == 0)      padOut.sendNoteOn(1, 16*b+8, extraBtnsOUT[0][b]);
-      else if (offset == 1) padOut.sendControlChange(1, 104+b, extraBtnsOUT[0][b]);
-      else if (offset == 2) padOut.sendControlChange(1, 111-b, extraBtnsOUT[0][b]);
-      else if (offset == 3) padOut.sendNoteOn(1, 16*(7-b)+8, extraBtnsOUT[0][b]);
-      //usleep(1000);
+      if (offset == 0)
+        padOut.sendNoteOn(1, 16*b+8, extraBtnsOUT[0][b]);
+      else if (offset == 1)
+        padOut.sendControlChange(1, 104+b, extraBtnsOUT[0][b]);
+      else if (offset == 2)
+        padOut.sendControlChange(1, 111-b, extraBtnsOUT[0][b]);
+      else if (offset == 3)
+        padOut.sendNoteOn(1, 16*(7-b)+8, extraBtnsOUT[0][b]);
+      // usleep(1000);
     }
 
   // Push extra buttons VERTICAL
   for (uint b = 0; b < 8; b++)
-    //if (extraBtnsOUT[1][b] != extraBtns[1][b]) {
+    // if (extraBtnsOUT[1][b] != extraBtns[1][b]) {
     if (true) {
       extraBtnsOUT[1][b] = extraBtns[1][b];
 
       // send midi cmd
-      if (offset == 0)      padOut.sendControlChange(1, 111-b, extraBtnsOUT[1][b]);
-      else if (offset == 1) padOut.sendNoteOn(1, 16*b+8, extraBtnsOUT[1][b]);
-      else if (offset == 2) padOut.sendNoteOn(1, 16*(7-b)+8, extraBtnsOUT[1][b]);
-      else if (offset == 3) padOut.sendControlChange(1, 104+b, extraBtnsOUT[1][b]);
-      //usleep(1000);
+      if (offset == 0)
+        padOut.sendControlChange(1, 111-b, extraBtnsOUT[1][b]);
+      else if (offset == 1)
+        padOut.sendNoteOn(1, 16*b+8, extraBtnsOUT[1][b]);
+      else if (offset == 2)
+          padOut.sendNoteOn(1, 16*(7-b)+8, extraBtnsOUT[1][b]);
+      else if (offset == 3)
+        padOut.sendControlChange(1, 104+b, extraBtnsOUT[1][b]);
+      // usleep(1000);
     }
-
 }

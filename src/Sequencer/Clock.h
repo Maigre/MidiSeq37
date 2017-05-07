@@ -1,3 +1,4 @@
+#pragma once
 #include "../Utils/Lockable.h"
 
 class Clock : public Lockable {
