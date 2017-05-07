@@ -98,7 +98,7 @@ void LPad::draw() {
 
   char** matrix = modes[state->currentmode]->getMatrix(offset);
   char** extraBtns = modes[state->currentmode]->getCommands(offset);
-
+  
   // Push matrix
   char xR = 0, yR = 0;
   for (uint x = 0; x < 8; x++)

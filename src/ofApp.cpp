@@ -19,11 +19,14 @@ void ofApp::setup(){
       break;
     }
 
-  sequencer = new Sequencer(16, portout);
+  // Create Sequencer
+  sequencer = new Sequencer(1, portout);
   sequencer->start();
 
+  // Add beat on first track
+  sequencer->track(1)->playPattern(1);
   for (int k=0; k < (RESOLUTION*4); k+=RESOLUTION)
-    sequencer->track(1)->addNote(k, 36, RESOLUTION-1);
+    sequencer->track(1)->activePattern()->addNote(k, 36, RESOLUTION/4-1);
 
   launchpad = new Launchpad(sequencer);
 }

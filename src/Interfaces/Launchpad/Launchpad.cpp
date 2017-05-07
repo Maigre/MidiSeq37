@@ -36,7 +36,7 @@ Launchpad::Launchpad(Sequencer* seq) {
 
 void Launchpad::draw() {
   modes[state->currentmode]->refresh();
-
+  
   for (uint k=0; k<size; k++)
     pads[k]->draw();
 

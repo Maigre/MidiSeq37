@@ -39,10 +39,10 @@ class Mode_steps16 : public Mode_base16 {
       uint step = (x + (params->activepage-1)*state->width*8) * RESOLUTION / params->zoom;
       uint length = RESOLUTION / params->zoom;
 
-      Track* track = state->activetrack();
-      std::vector<MMidiNote*> notes = track->getNotes(step, length, note);
+      Pattern* patt = state->selectedPattern();
+      std::vector<MMidiNote*> notes = patt->getNotes(step, length, note);
 
-      if (notes.size() == 0) track->addNote(step, note, length-1);
+      if (notes.size() == 0) patt->addNote(step, note, length-1);
       else for (u_int k=0; k<notes.size(); k++) notes[k]->remove();
 
     };
@@ -57,7 +57,7 @@ class Mode_steps16 : public Mode_base16 {
         // Page & Length
         if (params->activemenu == BTN_STEPS_PAGE) {
           if (n < 8) params->activepage = n+1;
-          else state->activetrack()->clock()->setLoopSize(n-7);
+          else state->selectedPattern()->clock()->setLoopSize(n-7);
         }
       }
 
@@ -69,7 +69,7 @@ class Mode_steps16 : public Mode_base16 {
 
       // channel select
       else if (state->lastButton(ROW_LEFT) == BTN_STEPS_CHANNEL)
-        state->activetrack()->setChannel(n+1);
+        state->selectedTrack()->setChannel(n+1);
 
     };
 
@@ -110,7 +110,7 @@ class Mode_steps16 : public Mode_base16 {
         uint tCount = state->width*8*stepSize;
         uint tOrig = (params->copypage-1)*tCount;
         uint tDest = (params->activepage-1)*tCount;
-        state->activetrack()->copyNotes(tOrig, tDest, tCount);
+        state->selectedPattern()->copyNotes(tOrig, tDest, tCount);
       }
 
       // Base menu
@@ -124,18 +124,19 @@ class Mode_steps16 : public Mode_base16 {
       Mode_base16::refresh();
 
       // load
-      Track* track = state->activetrack();
+      Pattern* patt = state->selectedPattern();
+      Track* track = state->selectedTrack();
       uint height_steps = (state->height*8);
 
       // STEPS matrix
-      uint active_col = (track->clock()->beatfraction(params->zoom)-1);
+      uint active_col = (patt->clock()->beatfraction(params->zoom)-1);
       uint xShift = (params->activepage-1)*state->width*8;
       uint stepSize = RESOLUTION/params->zoom;
 
       for (uint x = 0; x < state->width*8; x++) {
         // get notes for current grid
         uint realcol = x+xShift;
-        std::vector<MMidiNote*> notes = track->getNotes(realcol*stepSize, stepSize);
+        std::vector<MMidiNote*> notes = patt->getNotes(realcol*stepSize, stepSize);
 
         for (uint y = 0; y < height_steps; y++) {
             // vertical red bar
@@ -155,9 +156,9 @@ class Mode_steps16 : public Mode_base16 {
       if (state->lastButton(ROW_LEFT) != BTN_NONE)
           extraBtns[ROW_LEFT][state->lastButton(ROW_LEFT)] = COLOR_YELLOW;
 
-      // Yellow on ActiveMenu
+      // ActiveMenu
       else if (params->activemenu != BTN_NONE)
-          extraBtns[ROW_LEFT][params->activemenu] = COLOR_YELLOW;
+          extraBtns[ROW_LEFT][params->activemenu] = COLOR_GREEN;
 
 
       // TOP
@@ -175,20 +176,18 @@ class Mode_steps16 : public Mode_base16 {
 
       // Page & Length ActiveMenu
       else if (params->activemenu == BTN_STEPS_PAGE) {
-        uint nPages = track->clock()->beatsloop()*params->zoom/(state->width*8);
+        uint nPages = patt->clock()->beatsloop()*params->zoom/(state->width*8);
         uint active_page = active_col/16;
-        for (uint k=0; k<8; k++)
-          if (k == params->activepage-1) {
-            if (k == active_page) extraBtns[ROW_TOP][k] = blink(COLOR_RED);
-            else extraBtns[ROW_TOP][k] = COLOR_RED;
-          }
-          else if (k < nPages) {
-            if (k == active_page) extraBtns[ROW_TOP][k] = blink(COLOR_GREEN);
-            else extraBtns[ROW_TOP][k] = COLOR_GREEN;
-          }
+        for (uint k=0; k<8; k++) {
+          if (k == params->activepage-1) extraBtns[ROW_TOP][k] = COLOR_RED;
+          else if (k < nPages) extraBtns[ROW_TOP][k] = COLOR_GREEN;
+
+          // BLink running page
+          if (k == active_page) extraBtns[ROW_TOP][k] = semiblink(extraBtns[ROW_TOP][k]);
+        }
 
         for (uint k=0; k<8; k++)
-          if (k < track->clock()->barsloop()) extraBtns[ROW_TOP][k+8] = COLOR_AMBER;
+          if (k < patt->clock()->barsloop()) extraBtns[ROW_TOP][k+8] = COLOR_YELLOW;
       }
 
     };

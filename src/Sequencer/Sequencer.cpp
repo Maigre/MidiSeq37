@@ -10,7 +10,7 @@ Sequencer::Sequencer(uint size, uint midiout) {
 
   // Tracker
   tracks.resize(size+1);
-  for (int k=0; k<=size; k++)
+  for (uint k=0; k<=size; k++)
     tracks[k] = new Track(&midiOut, k);
 
   // Ticker

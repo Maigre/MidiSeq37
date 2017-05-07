@@ -1,32 +1,27 @@
 #include "MMidiEvent.h"
 #include "Clock.h"
+#include "../Utils/Lockable.h"
 
-class Pattern {
+class Pattern : public Lockable {
   public:
-    Pattern() {
-      pattclock = new Clock();
-      notesON.resize(pattclock->ticksloop());
-      notempty = false;
-    };
+    Pattern();
 
-    bool check() {
-      notempty = false;
-      for (uint k=0; k<notesON.size(); k++)
-        if (notesON[k].size() > 0) {
-          notempty = true;
-          break;
-        }
-      return notempty;
-    };
+    bool notempty();
+    Clock* clock();
+    void resize();
+    void resize(uint64_t t);
 
-    bool isActive() {
-      return notempty;
-    };
+    MMidiNote* addNote(uint tick, uint note, uint duration);
+    void copyNotes(uint startCopy, uint startPast, uint count);
+    std::vector<MMidiNote*> getNotes(uint start, uint size);
+    std::vector<MMidiNote*> getNotes(uint start, uint size, int noteval);
+
+    void cleanNotes(uint tick);
+
+  private:
+
 
     Clock* pattclock;
     std::vector<std::vector<MMidiNote*>> notesON;
-
-  private:
-    bool notempty;
 
 };

@@ -6,9 +6,11 @@ class MMidiEvent {
     MMidiEvent();
     void remove();
     bool isValid();
+    bool isPlaying();
 
   protected:
     bool valid;
+    bool playing;
 };
 
 

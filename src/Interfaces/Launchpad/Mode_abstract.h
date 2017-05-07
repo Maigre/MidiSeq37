@@ -89,7 +89,17 @@ class Mode_abstract {
     };
 
     uint blink(uint color) {
-      if (state->activetrack()->clock()->beatfraction(2)%2 == 0) return color;
+      if (state->selectedPattern()->clock()->beatfraction(2)%2 == 0) return color;
+      else return COLOR_OFF;
+    }
+
+    uint semiblink(uint color) {
+      if (state->selectedPattern()->clock()->beatfraction(2)%2 == 0) return color;
+      else if (color == COLOR_GREEN) return COLOR_GREEN_LOW;
+      else if (color == COLOR_RED) return COLOR_RED_LOW;
+      else if (color == COLOR_AMBER) return COLOR_AMBER_LOW;
+      else if (color == COLOR_ORANGE) return COLOR_ORANGE_LOW;
+      else if (color == COLOR_YELLOW) return COLOR_YELLOW_LOW;
       else return COLOR_OFF;
     }
 

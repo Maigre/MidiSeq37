@@ -32,7 +32,8 @@ class Mode_base16 : public Mode_abstract {
 
       // Mode Pattern
       extraBtns[ROW_RIGHT][BTN_MODE_PATTS] =
-        (state->currentmode == MODE_PATTS) ? COLOR_GREEN : COLOR_OFF;
+        (state->currentmode == MODE_PATTS) ? COLOR_GREEN :
+          (state->currentmode == MODE_STEPS) ? COLOR_YELLOW : COLOR_OFF;
 
 
     };

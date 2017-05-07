@@ -9,40 +9,59 @@
 
 class LPstate {
 
-public:
-  LPstate(Sequencer* seq) {
-    sequencer = seq;
-    currentmode = MODE_DEFAULT;
-    tracksel = 1;
-    pattsel = 0;
-    height = 0;
-    width = 0;
-  };
+  public:
+    LPstate(Sequencer* seq) {
+      sequencer = seq;
+      currentmode = MODE_DEFAULT;
+      selectedtrack = 1;
+      selectedpatt = selectedTrack()->activePatternIndex();
+      height = 0;
+      width = 0;
+    };
 
-  Track* activetrack() {
-    return sequencer->track(tracksel);
-  };
+    Track* selectedTrack() {
+      return sequencer->track(selectedtrack);
+    };
 
-  void buttonRecord(uint row, uint btn, uint pushed) {
-    pushedBtns[row][btn] = pushed;
-    if (pushed) pushedStack[row].push_front(btn);
-    else pushedStack[row].remove(btn);
-  }
+    Pattern* selectedPattern() {
+      return selectedTrack()->pattern(selectedpatt);
+    };
 
-  uint lastButton(uint row) {
-    if (pushedStack[row].empty()) return BTN_NONE;
-    else return pushedStack[row].front();
-  }
+    void select(uint track, int patt) {
+      selectedtrack = track;
+      selectedpatt = patt;
+    };
 
-  Sequencer*  sequencer;
-  uint        width;
-  uint        height;
+    uint trackSel() {
+      return selectedtrack;
+    }
 
-  uint        currentmode;
-  uint        tracksel;
-  uint        pattsel;
+    uint pattSel() {
+      return selectedpatt;
+    }
 
-  uint         pushedBtns[4][16];
-  list<uint>   pushedStack[4];
+    void buttonRecord(uint row, uint btn, uint pushed) {
+      pushedBtns[row][btn] = pushed;
+      if (pushed) pushedStack[row].push_front(btn);
+      else pushedStack[row].remove(btn);
+    }
+
+    uint lastButton(uint row) {
+      if (pushedStack[row].empty()) return BTN_NONE;
+      else return pushedStack[row].front();
+    }
+
+    Sequencer*  sequencer;
+    uint        width;
+    uint        height;
+
+    uint        currentmode;
+
+  private:
+    uint        selectedtrack;
+    int         selectedpatt;
+
+    uint         pushedBtns[4][16];
+    list<uint>   pushedStack[4];
 
 };
