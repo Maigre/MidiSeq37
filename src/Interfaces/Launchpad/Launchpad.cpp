@@ -1,11 +1,9 @@
 #include "Modes.h"
 #include "Launchpad.h"
-#include "Mode_steps16.h"
-#include "Mode_patts16.h"
+#include "LPstate.h"
 
 Launchpad::Launchpad(Sequencer* seq) {
-  // Load STATE
-  state = new LPstate(seq);
+
 
   // Detect size
   uint offset = 0;
@@ -16,27 +14,26 @@ Launchpad::Launchpad(Sequencer* seq) {
       if (offset == 4) break;
     }
 
-  size = offset;
-  state->width = (offset > 1)?2:1;
-  state->height = (offset > 2)?2:1;
+  // Load STATE
+  state = new LPstate(seq, (offset > 1)?2:1, (offset > 2)?2:1);
 
-  // Load MODES
-  modes[MODE_STEPS] = new Mode_steps16(state);
-  modes[MODE_PATTS] = new Mode_patts16(state);
+  size = offset;
 
   // Create PADS
   offset = 0;
   for (char port=0; port<ofxMidiOut::getNumPorts(); port++)
     if (ofxMidiOut::getPortName(port).find("Launchpad") != string::npos) {
-      pads[offset] = new LPad(state, modes, port, offset);
+      pads[offset] = new LPad(state, port, offset);
       offset++;
       if (offset == 4) break;
     }
 }
 
 void Launchpad::draw() {
-  modes[state->currentmode]->refresh();
-  
+
+
+  state->mode()->refresh();
+
   for (uint k=0; k<size; k++)
     pads[k]->draw();
 

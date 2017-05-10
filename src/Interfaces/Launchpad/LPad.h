@@ -12,7 +12,7 @@ LAUNCHPAD ONE class
 class LPad: public ofxMidiListener {
 
   public:
-    LPad(LPstate* s, Mode_abstract** m, char outport, uint n);
+    LPad(LPstate* s, char outport, uint n);
     void draw();
 
   private:

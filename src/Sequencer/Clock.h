@@ -1,11 +1,13 @@
 #pragma once
 #include "../Utils/Lockable.h"
+#include "../Memory/MemObject.h"
 
-class Clock : public Lockable {
+class Clock : public Lockable, public MemObject {
   public:
 
     // config
     Clock();
+    void memload(Json::Value data);
     void setLoopSize(uint barsInLoop);
     void setBarSize(uint beatsInBar);
 

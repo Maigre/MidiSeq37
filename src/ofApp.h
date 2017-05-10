@@ -25,7 +25,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 	private:
-
+    uint			 counter;
 		Sequencer* sequencer;
 		Launchpad* launchpad;
 };

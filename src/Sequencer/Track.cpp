@@ -7,12 +7,21 @@ Track::Track(ofxMidiOut* output, uint chan) {
   channel = chan;
   runningPatt = 0;
 
+  // init Notes OFF stack
   notesOFF.resize(128);
   for(uint k=0; k<128; k++) notesOFF[k] = NULL;
+
+  // Start first pattern
+  playPattern(1);
 }
 
 Pattern* Track::pattern(uint index) {
-  if (index > patterns.size() || index == 0) return NULL;
+  if (index == 0 || index>255) return NULL;
+  if (index > patterns.size()) {
+    uint oldsize = patterns.size();
+    patterns.resize(index);
+    for (uint k=oldsize; k<index; k++) patterns[k] = new Pattern();
+  }
   return patterns[index-1];
 }
 
@@ -29,11 +38,7 @@ bool Track::running() {
 }
 
 void Track::playPattern(uint index) {
-  if (index > patterns.size()) {
-    uint oldsize = patterns.size();
-    patterns.resize(index);
-    for (uint k=oldsize; k<index; k++) patterns[k] = new Pattern();
-  }
+  pattern(index);
   runningPatt = index;
 }
 
@@ -90,4 +95,24 @@ void Track::setChannel(uint ch) {
   lock();
   channel = ch;
   unlock();
+}
+
+// export memory
+Json::Value Track::memdump() {
+  memory["channel"] = getChannel();
+  memory["patterns"].clear();
+  for (uint k=0; k<patterns.size(); k++)
+    if (patterns[k]->memdump() != Json::nullValue)
+      memory["patterns"][k] = patterns[k]->memdump();
+  return memory;
+};
+
+// import memory
+void Track::memload(Json::Value data) {
+  MemObject::memload(data);
+
+  setChannel(data["channel"].asUInt());
+
+  for (uint k=0; k<data["patterns"].size(); k++)
+    pattern(k+1)->memload(data["patterns"][k]);
 }

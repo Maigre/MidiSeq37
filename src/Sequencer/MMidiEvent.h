@@ -1,7 +1,8 @@
 #pragma once
 #include "ofxMidi.h"
+#include "../Memory/MemObject.h"
 
-class MMidiEvent {
+class MMidiEvent : public MemObject {
   public:
     MMidiEvent();
     void remove();

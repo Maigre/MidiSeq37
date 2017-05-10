@@ -6,7 +6,7 @@
 #include <mutex>
 #include "../Utils/Lockable.h"
 
-class Track : public Lockable {
+class Track : public Lockable, public MemObject {
 
   public:
     Track(ofxMidiOut* output, uint chan);
@@ -22,6 +22,8 @@ class Track : public Lockable {
     void setChannel(uint ch);
     uint getChannel();
 
+    Json::Value memdump();
+    void memload(Json::Value data);
 
   private:
 

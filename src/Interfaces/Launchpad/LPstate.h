@@ -1,67 +1,40 @@
 #pragma once
 
-#include "Modes.h"
-#include <list>
+#include "LPstore.h"
+#include "Mode_home16.h"
+#include "Mode_steps16.h"
+#include "Mode_patts16.h"
+#include "Mode_load16.h"
+#include "Mode_save16.h"
 
-#include "../../Sequencer/Sequencer.h"
-#include "../../Sequencer/Track.h"
-
-
-class LPstate {
+class LPstate : public LPstore {
 
   public:
-    LPstate(Sequencer* seq) {
-      sequencer = seq;
-      currentmode = MODE_DEFAULT;
-      selectedtrack = 1;
-      selectedpatt = selectedTrack()->activePatternIndex();
-      height = 0;
-      width = 0;
+    LPstate(Sequencer* seq, uint width, uint height) : LPstore(seq, width, height) {
+
+      // Load MODES
+      modes[MODE_NONE] = new Mode_home16(this);
+      modes[MODE_STEPS] = new Mode_steps16(this);
+      modes[MODE_PATTS] = new Mode_patts16(this);
+      modes[MODE_LOAD] = new Mode_load16(this);
+      modes[MODE_SAVE] = new Mode_save16(this);
+
     };
 
-    Track* selectedTrack() {
-      return sequencer->track(selectedtrack);
+    bool setTrack(uint track, int patt) {
+      bool ret = LPstore::setTrack(track, patt);
+      mode()->onFocus();
+      return ret;
     };
 
-    Pattern* selectedPattern() {
-      return selectedTrack()->pattern(selectedpatt);
-    };
-
-    void select(uint track, int patt) {
-      selectedtrack = track;
-      selectedpatt = patt;
-    };
-
-    uint trackSel() {
-      return selectedtrack;
+    void setMode(uint m) {
+      LPstore::setMode(m);
+      mode()->onFocus();
     }
 
-    uint pattSel() {
-      return selectedpatt;
-    }
 
-    void buttonRecord(uint row, uint btn, uint pushed) {
-      pushedBtns[row][btn] = pushed;
-      if (pushed) pushedStack[row].push_front(btn);
-      else pushedStack[row].remove(btn);
-    }
 
-    uint lastButton(uint row) {
-      if (pushedStack[row].empty()) return BTN_NONE;
-      else return pushedStack[row].front();
-    }
+  protected:
 
-    Sequencer*  sequencer;
-    uint        width;
-    uint        height;
-
-    uint        currentmode;
-
-  private:
-    uint        selectedtrack;
-    int         selectedpatt;
-
-    uint         pushedBtns[4][16];
-    list<uint>   pushedStack[4];
 
 };

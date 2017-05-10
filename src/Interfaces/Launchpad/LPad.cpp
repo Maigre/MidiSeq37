@@ -7,13 +7,12 @@
 #include "../Sequencer/MMidiEvent.h"
 
 
-LPad::LPad(LPstate* s, Mode_abstract** m, char outport, uint n) {
+LPad::LPad(LPstate* s, char outport, uint n) {
 
   memset(matrixOUT,     COLOR_OFF, sizeof(matrixOUT));
   memset(extraBtnsOUT,  COLOR_OFF, sizeof(extraBtnsOUT));
 
   state = s;
-  modes = m;
   offset = n;
 
   padOut.openPort(outport);
@@ -51,7 +50,7 @@ void LPad::newMidiMessage(ofxMidiMessage& msg) {
       if (offset%2 == 1) { xR += 8; }
       yR += (offset/2)*8;
 
-      modes[state->currentmode]->inputMatrix(xR, yR, pushed);
+      state->mode()->inputMatrix(xR, yR, pushed);
     }
 
     // right col
@@ -65,8 +64,7 @@ void LPad::newMidiMessage(ofxMidiMessage& msg) {
       else if (offset == 3) {row = ROW_BOTTOM;  btn = 15-y;}
 
       // trigger
-      state->buttonRecord(row, btn, pushed);
-      modes[state->currentmode]->inputCommand(row, btn, pushed);
+      state->mode()->inputCommand(row, btn, pushed);
     }
   }
 
@@ -85,8 +83,7 @@ void LPad::newMidiMessage(ofxMidiMessage& msg) {
     else if (offset == 3) {row = ROW_RIGHT;   btn = x+8;}
 
     // trigger
-    state->buttonRecord(row, btn, pushed);
-    modes[state->currentmode]->inputCommand(row, btn, pushed);
+    state->mode()->inputCommand(row, btn, pushed);
   }
 }
 
@@ -96,9 +93,9 @@ char LPad::colorRG(char red, char green) {
 
 void LPad::draw() {
 
-  char** matrix = modes[state->currentmode]->getMatrix(offset);
-  char** extraBtns = modes[state->currentmode]->getCommands(offset);
-  
+  char** matrix = state->mode()->getMatrix(offset);
+  char** extraBtns = state->mode()->getCommands(offset);
+
   // Push matrix
   char xR = 0, yR = 0;
   for (uint x = 0; x < 8; x++)

@@ -1,6 +1,7 @@
 #include "ofApp.h"
 #include "conf.h"
 #include "ofxMidi.h"
+#include "Memory/MemFiles.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -20,20 +21,31 @@ void ofApp::setup(){
     }
 
   // Create Sequencer
-  sequencer = new Sequencer(1, portout);
+  sequencer = new Sequencer(portout);
+
+  // Load Mem 0
+  sequencer->load(0);
+
+  // Start
   sequencer->start();
 
   // Add beat on first track
-  sequencer->track(1)->playPattern(1);
-  for (int k=0; k < (RESOLUTION*4); k+=RESOLUTION)
-    sequencer->track(1)->activePattern()->addNote(k, 36, RESOLUTION/4-1);
+  // for (int k=0; k < (RESOLUTION*4); k+=RESOLUTION)
+  //   sequencer->track(1)->pattern(1)->addNote(k, 36, RESOLUTION/4-1);
 
   launchpad = new Launchpad(sequencer);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-  //sequencer->progress();
+  counter = (counter+1) % (60*FRAMERATE);
+
+  // Perfomance
+  if (counter % (FRAMERATE) == 0) sequencer->progress();
+
+  // auto save
+  if (AUTOSAVE)
+    if (counter % (5*FRAMERATE) == 0) sequencer->save();
 }
 
 //--------------------------------------------------------------
@@ -44,7 +56,9 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+  // if (key == 's') sequencer->save(0);
+  //else if (key == 'l') sequencer->load(0);
+  if (key == 'a') MemFiles::List();
 }
 
 //--------------------------------------------------------------

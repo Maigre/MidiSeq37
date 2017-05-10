@@ -11,12 +11,21 @@ Clock::Clock() {
   loopTicks = RESOLUTION*loopBars*barBeats;
   barTicks = RESOLUTION*barBeats;
 
+  memory["loopBars"] = loopBars;
+  memory["barBeats"] = barBeats;
+}
+
+// import memory
+void Clock::memload(Json::Value data) {
+  setLoopSize(memory["loopBars"].asUInt());
+  setBarSize(memory["barBeats"].asUInt());
 }
 
 void Clock::setLoopSize(uint barsInLoop) {
   lock();
   loopTicks = loopTicks*barsInLoop/loopBars;
   loopBars = barsInLoop;
+  memory["loopBars"] = loopBars;
   unlock();
 }
 
@@ -24,6 +33,7 @@ void Clock::setBarSize(uint beatsInBar) {
   lock();
   loopTicks = loopTicks*beatsInBar/barBeats;
   barBeats = beatsInBar;
+  memory["barBeats"] = barBeats;
   unlock();
 }
 

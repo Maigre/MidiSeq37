@@ -1,14 +1,17 @@
 #pragma once
 #include "Modes.h"
-#include "LPstate.h"
+#include "LPstore.h"
+#include "TextDisp.h"
 
 class Mode_abstract {
   public:
-    Mode_abstract(LPstate* s) {
-      state = s;
+    Mode_abstract(LPstore* st) {
+      store = st;
 
       memset(matrix,    COLOR_OFF, sizeof(matrix));
       memset(extraBtns, COLOR_OFF, sizeof(extraBtns));
+
+      initText();
     };
 
     // DRAW
@@ -18,9 +21,11 @@ class Mode_abstract {
       memset(extraBtns, COLOR_OFF, sizeof(extraBtns));
     };
 
-    virtual void inputMatrix(uint x, uint y, bool pushed) = 0;
+    virtual void inputMatrix(uint x, uint y, bool pushed) {};
 
     void inputCommand(char row, char btn, bool pushed) {
+      store->buttons->record(row, btn, pushed);
+
       if (row == ROW_TOP)         inputTop(btn, pushed);
       else if (row == ROW_LEFT)   inputLeft(btn, pushed);
       else if (row == ROW_RIGHT)  inputRight(btn, pushed);
@@ -67,34 +72,44 @@ class Mode_abstract {
       return subcmds;
     };
 
+    virtual void onFocus() {
+      initText();
+    };
+
   protected:
-    LPstate* state;
+    LPstore* store;
     char matrix[16][16];
     char extraBtns[16][16];
 
-    virtual void inputLeft(uint n, bool pushed){
-      if (pushed) cout << "input left: " << std::to_string(n) << endl;
-    };
+    TextDisp* text;
 
-    virtual void inputTop(uint n, bool pushed){
-      if (pushed) cout << "input top: " << std::to_string(n) << endl;
-    };
+    void initText() {
+      text = new TextDisp(store->baseclock());
+    }
 
-    virtual void inputBottom(uint n, bool pushed) {
-      if (pushed) cout << "input bottom: " << std::to_string(n) << endl;
-    };
+    bool drawText(string t, uint y, uint speed = 0, bool repeat = false) {
+      text->set(t);
+      if (speed > 0 && !text->scroll(speed, repeat)) return false;
+      uint** txt = text->getMatrix(16);
+      for (uint x = 0; x < 16; x++)
+        for (uint y = 0; y < 4; y++)
+            matrix[x][y+3] = txt[x][y];
+      return true;
+    }
 
-    virtual void inputRight(uint n, bool pushed){
-      if (pushed) cout << "input right: " << std::to_string(n) << endl;
-    };
+    // called by LPad via State
+    virtual void inputLeft(uint n, bool pushed) {};
+    virtual void inputTop(uint n, bool pushed) {};
+    virtual void inputBottom(uint n, bool pushed) {};
+    virtual void inputRight(uint n, bool pushed) {};
 
     uint blink(uint color) {
-      if (state->selectedPattern()->clock()->beatfraction(2)%2 == 0) return color;
+      if (store->baseclock()->beatfraction(2)%2 != 0) return color;
       else return COLOR_OFF;
     }
 
     uint semiblink(uint color) {
-      if (state->selectedPattern()->clock()->beatfraction(2)%2 == 0) return color;
+      if (store->baseclock()->beatfraction(2)%2 != 0) return color;
       else if (color == COLOR_GREEN) return COLOR_GREEN_LOW;
       else if (color == COLOR_RED) return COLOR_RED_LOW;
       else if (color == COLOR_AMBER) return COLOR_AMBER_LOW;

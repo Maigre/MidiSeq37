@@ -16,5 +16,4 @@ private:
   uint size;
 
   LPstate* state;
-  Mode_abstract*  modes[16];
 };

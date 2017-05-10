@@ -1,17 +1,16 @@
 #include "Sequencer.h"
+#include "../Memory/MemFiles.h"
 
-Sequencer::Sequencer(uint size, uint midiout) {
+Sequencer::Sequencer(uint midiport) {
 
   //Midi Out
-  midiOut.openPort(midiout);
+  midiOut.openPort(midiport);
 
   newTick = new Semaphore();
   lastTick = 0;
 
-  // Tracker
-  tracks.resize(size+1);
-  for (uint k=0; k<=size; k++)
-    tracks[k] = new Track(&midiOut, k);
+  // Init Track 0 (background clock)
+  track(0);
 
   // Ticker
   ticker = new Ticker();
@@ -21,6 +20,24 @@ Sequencer::Sequencer(uint size, uint midiout) {
 
   setBPM(137);
 
+  currentBank = 0;
+}
+
+void Sequencer::load(uint bank) {
+  memload( MemFiles::Read(bank) );
+  currentBank = bank;
+}
+
+void Sequencer::save(uint bank) {
+  MemFiles::Write(bank, memdump());
+}
+
+void Sequencer::save() {
+  save(currentBank);
+}
+
+uint Sequencer::bank() {
+  return currentBank;
 }
 
 void Sequencer::setBPM(int _bpm) {
@@ -49,8 +66,15 @@ void Sequencer::stop() {
 }
 
 Track* Sequencer::track(uint8_t n) {
-  if (n < tracks.size()) return tracks[n];
-  else return NULL;
+  lock();
+  if (n >= tracks.size()) {
+    uint oldsize = tracks.size();
+      tracks.resize(n+1);
+      for (uint k=oldsize; k<=n; k++)
+        tracks[k] = new Track(&midiOut, k);
+  }
+  unlock();
+  return tracks[n];
 }
 
 void Sequencer::threadedFunction() {
@@ -70,7 +94,9 @@ void Sequencer::threadedFunction() {
       //cout << "new tick: "<< t << endl;
 
       //check every tracks
+      lock();
       for (uint8_t k = 0; k < tracks.size(); k++) tracks[k]->onTick(t);
+      unlock();
 
     }
 
@@ -79,4 +105,28 @@ void Sequencer::threadedFunction() {
   }
 
   ticker->stopThread();
+}
+
+// export memory
+Json::Value Sequencer::memdump() {
+  memory["tracks"].clear();
+  lock();
+  for (uint k=0; k<tracks.size(); k++)
+    memory["tracks"][k] = tracks[k]->memdump();
+  unlock();
+  return memory;
+};
+
+// import memory
+void Sequencer::memload(Json::Value data) {
+  MemObject::memload(data);
+
+  lock();
+  for (uint k=0; k<tracks.size(); k++)
+    delete tracks[k];
+  tracks.clear();
+  unlock();
+
+  for (uint k=0; k<data["tracks"].size(); k++)
+    track(k)->memload(data["tracks"][k]);
 }

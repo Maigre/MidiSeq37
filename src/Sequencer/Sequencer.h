@@ -7,18 +7,26 @@
 #include "../conf.h"
 
 
-class Sequencer : public ofThread {
+class Sequencer : public ofThread, public MemObject {
 
   public:
-    Sequencer(uint size, uint midiout);
+    Sequencer(uint midiport);
     void setBPM(int _bpm);
     void progress();
     void start();
     void stop();
 
+    void load(uint bank);
+    void save(uint bank);
+    void save();
+    uint bank();
+
     Track* track(uint8_t n);
 
     void threadedFunction();
+
+    Json::Value memdump();
+    void memload(Json::Value data);
 
   private:
     int bpm;
@@ -31,4 +39,5 @@ class Sequencer : public ofThread {
     std::vector<Track*> tracks;
     ofxMidiOut midiOut;
 
+    uint currentBank;
 };

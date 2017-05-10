@@ -1,3 +1,4 @@
+#pragma once
 
 // Color 12+Red+Green*16
 #define COLOR_OFF         12
@@ -15,9 +16,11 @@
 
 
 // MODES
-#define MODE_NONE 0
-#define MODE_STEPS 1
-#define MODE_PATTS 2
+#define MODE_NONE   0
+#define MODE_STEPS  1
+#define MODE_PATTS  2
+#define MODE_LOAD   3
+#define MODE_SAVE   4
 
 #define MODE_DEFAULT MODE_PATTS
 

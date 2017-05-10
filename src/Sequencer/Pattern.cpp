@@ -31,8 +31,12 @@ void Pattern::resize(uint64_t t) {
 }
 
 MMidiNote* Pattern::addNote(uint tick, uint note, uint duration) {
+  return addNote(tick, note, duration, 64);
+}
+
+MMidiNote* Pattern::addNote(uint tick, uint note, uint duration, uint velocity) {
   resize(tick);
-  MMidiNote* noteOn = new MMidiNote(note, 64, duration);
+  MMidiNote* noteOn = new MMidiNote(note, velocity, duration);
   lock();
   notesON[tick].push_back(noteOn);
   unlock();
@@ -46,6 +50,8 @@ void Pattern::copyNotes(uint startCopy, uint startPast, uint count) {
     std::vector<MMidiNote*> buffer;
     buffer = getNotes(startCopy+tick, 1);
     lock();
+    for ( int i = 0; i < notesON[startPast+tick].size(); i++ )
+      delete notesON[startPast+tick][i];
     notesON[startPast+tick].clear();
     unlock();
     for (uint k=0; k<buffer.size(); k++)
@@ -95,4 +101,41 @@ void Pattern::cleanNotes(uint t) {
       }
   }
   unlock();
+}
+
+// export memory
+Json::Value Pattern::memdump() {
+
+  if (!notempty()) return Json::nullValue;
+
+  // Notes
+  uint index = 0;
+  memory["notes"].clear();
+  for (uint t=0; t<notesON.size(); t++)
+    for (uint k=0; k<notesON[t].size(); k++)
+      if (notesON[t][k]->isValid()) {
+        memory["notes"][index] = notesON[t][k]->memdump();
+        memory["notes"][index]["tick"] = t;
+        index++;
+      }
+
+  // Clock
+  memory["clock"] = pattclock->memdump();
+
+  return memory;
+}
+
+// import memory
+void Pattern::memload(Json::Value data) {
+  MemObject::memload(data);
+
+  // Clock
+  pattclock->memload(data["clock"]);
+
+  // Notes
+  for (uint k=0; k<data["notes"].size(); k++)
+    addNote(data["notes"][k]["tick"].asUInt(),
+            data["notes"][k]["note"].asUInt(),
+            data["notes"][k]["length"].asUInt(),
+            data["notes"][k]["velocity"].asUInt());
 }

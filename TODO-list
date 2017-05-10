@@ -3,14 +3,14 @@ GENERAL
   save / load
 
   LAYOUT RIGHT
-  0 - PATT MODE (Home) -> Keep & select to edit
-  1 - Mixer
-  2 -
+  0 - PATT MODE (Home) -> Keep & select to edit without playing
+  1 - Mixer ?
+  2 - BPM ? ## 3 lines selector + mem on top + digital display
   3 -
   4 -
-  5 -
-  6 -
-  7 - Program change
+  5 - Memory Bank select / save
+  6 - Paste
+  7 - Copy
 
 MODE PATTERN
   play patt on click
@@ -18,13 +18,16 @@ MODE PATTERN
   play line on LEFT click
   mute on top
 
+  LAYOUT LEFT
+    play line
+
 MODE STEP
   program change
   instrument defaults params (note layout / channel)
 
   LAYOUT LEFT
-    0 - Page + length selection (on top)
-    1 - Zoom (on top)
+    0 - Page + length selection (on top) // Press to Zoom (on top)
+    1 -
     2 -
     3 -
     4 -
