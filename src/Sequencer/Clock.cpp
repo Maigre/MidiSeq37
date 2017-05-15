@@ -1,6 +1,7 @@
 #include "Clock.h"
 #include "../conf.h"
-
+#include <iostream>
+using namespace std;
 
 Clock::Clock() {
   tickMod = 0;
@@ -17,8 +18,9 @@ Clock::Clock() {
 
 // import memory
 void Clock::memload(Json::Value data) {
-  setLoopSize(memory["loopBars"].asUInt());
-  setBarSize(memory["barBeats"].asUInt());
+  cout << "Mem Load " ;
+  setLoopSize(data["loopBars"].asUInt());
+  setBarSize(data["barBeats"].asUInt());
 }
 
 void Clock::setLoopSize(uint barsInLoop) {
@@ -27,6 +29,7 @@ void Clock::setLoopSize(uint barsInLoop) {
   loopBars = barsInLoop;
   memory["loopBars"] = loopBars;
   unlock();
+  cout << loopBars << endl;
 }
 
 void Clock::setBarSize(uint beatsInBar) {

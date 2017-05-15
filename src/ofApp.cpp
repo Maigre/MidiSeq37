@@ -41,7 +41,7 @@ void ofApp::update() {
   counter = (counter+1) % (60*FRAMERATE);
 
   // Perfomance
-  if (counter % (FRAMERATE) == 0) sequencer->progress();
+  if (counter % (10*FRAMERATE) == 0) sequencer->progress();
 
   // auto save
   if (AUTOSAVE)

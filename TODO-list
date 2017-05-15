@@ -1,6 +1,7 @@
+BUGS
+
 
 GENERAL
-  save / load
 
   LAYOUT RIGHT
   0 - PATT MODE (Home) -> Keep & select to edit without playing
@@ -13,9 +14,6 @@ GENERAL
   7 - Copy
 
 MODE PATTERN
-  play patt on click
-  edit patt on R-0 + click
-  play line on LEFT click
   mute on top
 
   LAYOUT LEFT
@@ -23,7 +21,9 @@ MODE PATTERN
 
 MODE STEP
   program change
-  instrument defaults params (note layout / channel)
+  volume per line (note)
+  velo per note (relative to line volume)
+  swing per note
 
   LAYOUT LEFT
     0 - Page + length selection (on top) // Press to Zoom (on top)
@@ -32,5 +32,5 @@ MODE STEP
     3 -
     4 -
     5 - Midi Channel (on top)
-    6 - Note Up
+    6 - Note Up   // + Note-Down to Scale menu (on top + right)
     7 - Note Down

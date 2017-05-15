@@ -23,6 +23,10 @@ class LPbuttons {
       else return pushedStack[row].front();
     };
 
+    uint active(uint row, uint btn) {
+      return pushedBtns[row][btn];
+    }
+
   private:
     uint         pushedBtns[4][16];
     list<uint>   pushedStack[4];

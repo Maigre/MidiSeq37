@@ -1,4 +1,5 @@
 #include "Mode_base16.h"
+#include "NotesScale.h"
 
 #define BTN_STEPS_PAGE      0
 #define BTN_STEPS_CHANNEL   5
@@ -8,10 +9,17 @@
 #define BTN_COPY    7
 #define BTN_PASTE   6
 
+#define MENU_NONE     0
+#define MENU_STEPS    1
+#define MENU_ZOOM     2
+#define MENU_MIDICH   3
+#define MENU_SCALE    4
+
 
 class Mode_steps16 : public Mode_base16 {
   public:
     Mode_steps16(LPstore* st) : Mode_base16(st) {
+      scales = new ScaleSelector();
     };
 
     void onFocus() {
@@ -23,16 +31,41 @@ class Mode_steps16 : public Mode_base16 {
     void inputMatrix(uint x, uint y, bool pushed) {
       if (!pushed) return;
 
-      uint note = mem_array_uint("notes", y);
-      uint length = RESOLUTION / mem_uint("zoom");
-      uint step = (x + (mem_uint("activepage")-1)*store->width*8) * length;
+      uint length = RESOLUTION / zoom();
+      uint step = (x + (page()-1)*store->width*8) * length;
 
 
       Pattern* patt = store->pattern();
-      std::vector<MMidiNote*> notes = patt->getNotes(step, length, note);
+      std::vector<MMidiNote*> notes = patt->getNotes(step, length, note(y));
 
-      if (notes.size() == 0) patt->addNote(step, note, length-1);
+      if (notes.size() == 0) patt->addNote(step, note(y), length-1);
       else for (u_int k=0; k<notes.size(); k++) notes[k]->remove();
+
+    };
+
+    // LEFT pushed
+    void inputLeft(uint n, bool pushed){
+
+      // page+length + zoom menu
+      if (n == BTN_STEPS_PAGE) {
+        menu(MENU_STEPS);
+        menu(MENU_ZOOM, pushed);
+      }
+
+      // midi channel
+      else if (n == BTN_STEPS_CHANNEL) menu(MENU_MIDICH, pushed);
+
+      // increase notes
+      else if (n == BTN_STEPS_NOTEUP && pushed) {
+        if (note(-1) > 0) scalebase( scalebase()+1 );
+        if (store->buttons->active(ROW_LEFT, BTN_STEPS_NOTEDOWN)) menu(MENU_SCALE);
+      }
+
+      // decrease notes
+      else if (n == BTN_STEPS_NOTEDOWN && pushed) {
+        if (note(8) > 0) scalebase( scalebase()-1 );
+        if (store->buttons->active(ROW_LEFT, BTN_STEPS_NOTEUP)) menu(MENU_SCALE);
+      }
 
     };
 
@@ -40,45 +73,24 @@ class Mode_steps16 : public Mode_base16 {
     void inputTop(uint n, bool pushed) {
       if (!pushed) return;
 
-      // ActiveMenu
-      if (store->buttons->active(ROW_LEFT) == BTN_NONE) {
-
-        // Page & Length
-        if (mem_uint("activemenu") == BTN_STEPS_PAGE) {
-          if (n < 8) mem_uint("activepage", n+1);
-          else store->pattern()->clock()->setLoopSize(n-7);
-        }
+      // Page & Length
+      if (menu() == MENU_STEPS) {
+        if (n < 8) page(n+1);
+        else store->pattern()->clock()->setLoopSize(n-7);
       }
 
       // Zoom select (reset copypage)
-      else if (store->buttons->active(ROW_LEFT) == BTN_STEPS_PAGE) {
-          mem_uint("zoom", n+1);
-          mem_uint("copypage", 0);
+      else if (menu() == MENU_ZOOM) {
+          zoom(n+1);
+          copypage(0);
       }
 
       // channel select
-      else if (store->buttons->active(ROW_LEFT) == BTN_STEPS_CHANNEL)
+      else if (menu() == MENU_MIDICH)
         store->track()->setChannel(n+1);
 
-    };
-
-    // LEFT pushed
-    void inputLeft(uint n, bool pushed){
-      if (!pushed) return;
-
-      // page+length menu
-      if (n == BTN_STEPS_PAGE)
-        mem_uint("activemenu", BTN_STEPS_PAGE);
-
-      // increase notes
-      if (n == BTN_STEPS_NOTEUP)
-        for (uint k=0; k<16; k++)
-          mem_array_uint("notes", k, mem_array_uint("notes", k)+1);
-
-      // decrease notes
-      else if (n == BTN_STEPS_NOTEDOWN)
-        for (uint k=0; k<16; k++)
-          mem_array_uint("notes", k, mem_array_uint("notes", k)-1);
+      // Scale select
+      else if (menu() == MENU_SCALE) scale(n);
 
     };
 
@@ -86,19 +98,18 @@ class Mode_steps16 : public Mode_base16 {
     void inputRight(uint n, bool pushed){
       if (!pushed) return;
 
+      // Subscale select
+      if (menu() == MENU_SCALE) subscale(n);
+
       // Copy page
-      if (n == BTN_COPY)
-        mem_uint("copypage", mem_uint("activepage"));
+      else if (n == BTN_COPY) copypage(page());
 
       // Paste page
-      else if (n == BTN_PASTE) {
-        if (mem_uint("copypage") == 0 || mem_uint("copypage") == mem_uint("activepage"))
-          return;
-
-        uint stepSize = RESOLUTION/mem_uint("zoom");
+      else if (n == BTN_PASTE && copypage() > 0 && copypage() != page()) {
+        uint stepSize = RESOLUTION/zoom();
         uint tCount = store->width*8*stepSize;
-        uint tOrig = (mem_uint("copypage")-1)*tCount;
-        uint tDest = (mem_uint("activepage")-1)*tCount;
+        uint tOrig = (copypage()-1)*tCount;
+        uint tDest = (page()-1)*tCount;
         store->pattern()->copyNotes(tOrig, tDest, tCount);
       }
 
@@ -119,12 +130,15 @@ class Mode_steps16 : public Mode_base16 {
       bool isPlaying = track->activePatternIndex() == store->getPatt();
 
       // No pattern selected: exit edit
-      if (patt == NULL || track == NULL) {store->setMode(MODE_PATTS); return;}
+      if (patt == NULL || track == NULL) {
+        store->setMode(MODE_PATTS);
+        return;
+      }
 
       // STEPS matrix
-      uint active_col = (patt->clock()->beatfraction(mem_uint("zoom"))-1);
-      uint xShift = (mem_uint("activepage")-1)*store->width*8;
-      uint stepSize = RESOLUTION / mem_uint("zoom");
+      uint active_col = (patt->clock()->beatfraction(zoom())-1);
+      uint xShift = (page()-1)*store->width*8;
+      uint stepSize = RESOLUTION / zoom();
 
       for (uint x = 0; x < store->width*8; x++) {
         // get notes for current grid
@@ -137,69 +151,97 @@ class Mode_steps16 : public Mode_base16 {
 
             // notes green
             for (uint k=0; k<notes.size(); k++)
-              if (notes[k]->note == mem_array_uint("notes", y)) {
+              if (notes[k]->note == note(y)) {
                 if (matrix[x][y] > COLOR_OFF) matrix[x][y] = COLOR_YELLOW;
                 else matrix[x][y] = COLOR_GREEN;
               }
         }
       }
 
-      // LEFT
-      // Yellow on press
+      // LEFT: Yellow on press
       if (store->buttons->active(ROW_LEFT) != BTN_NONE)
           extraBtns[ROW_LEFT][store->buttons->active(ROW_LEFT)] = COLOR_YELLOW;
 
-      // ActiveMenu
-      else if (mem_uint("activemenu") != BTN_NONE)
-          extraBtns[ROW_LEFT][mem_uint("activemenu")] = COLOR_GREEN;
+      // MENU: Page & Length
+      if (menu() == MENU_STEPS) {
+        // LEFT
+        extraBtns[ROW_LEFT][BTN_STEPS_PAGE] = COLOR_GREEN;
 
-
-      // TOP
-      // Zoom select
-      if (store->buttons->active(ROW_LEFT) == BTN_STEPS_PAGE) {
-        for (uint k=0; k<store->width*8; k++)
-          if (k <= mem_uint("zoom")-1) extraBtns[ROW_TOP][k] = COLOR_YELLOW;
-      }
-
-      // Channel select
-      else if (store->buttons->active(ROW_LEFT) == BTN_STEPS_CHANNEL) {
-        for (uint k=0; k<store->width*8; k++)
-          if (k == track->getChannel()-1) extraBtns[ROW_TOP][k] = COLOR_RED;
-      }
-
-      // Page & Length ActiveMenu
-      else if (mem_uint("activemenu") == BTN_STEPS_PAGE) {
-        uint nPages = patt->clock()->beatsloop()*mem_uint("zoom")/(store->width*8);
+        // TOP: Page
+        uint nPages = patt->clock()->beatsloop()*zoom()/(store->width*8);
         uint active_page = active_col/16;
         for (uint k=0; k<8; k++) {
-          if (k == mem_uint("activepage")-1) extraBtns[ROW_TOP][k] = COLOR_RED;
+          if (k == page()-1) extraBtns[ROW_TOP][k] = COLOR_RED;
           else if (k < nPages) extraBtns[ROW_TOP][k] = COLOR_GREEN;
 
           // BLink running page
           if (k == active_page) extraBtns[ROW_TOP][k] = semiblink(extraBtns[ROW_TOP][k]);
         }
 
+        // TOP: Length
         for (uint k=0; k<8; k++)
           if (k < patt->clock()->barsloop()) extraBtns[ROW_TOP][k+8] = COLOR_YELLOW;
+      }
+
+      // MENU: Zoom select
+      if (menu() == MENU_ZOOM) {
+        // TOP
+        for (uint k=0; k<store->width*8; k++)
+          if (k <= zoom()-1) extraBtns[ROW_TOP][k] = COLOR_YELLOW;
+      }
+
+      // MENU: Midi Channel select
+      else if (menu() == MENU_MIDICH) {
+        // TOP
+        for (uint k=0; k<store->width*8; k++)
+          if (k == track->getChannel()-1) extraBtns[ROW_TOP][k] = COLOR_RED;
+      }
+
+      // MENU: Note Scale
+      else if (menu() == MENU_SCALE) {
+        // LEFT
+        extraBtns[ROW_LEFT][BTN_STEPS_NOTEUP] = COLOR_YELLOW;
+        extraBtns[ROW_LEFT][BTN_STEPS_NOTEDOWN] = COLOR_YELLOW;
+
+        // TOP
+        for (uint k=0; k<16; k++)
+          if (k == scale())
+            extraBtns[ROW_TOP][k] = blink(COLOR_YELLOW);
+          else if (scales->preset(k) != NULL)
+            extraBtns[ROW_TOP][k] = COLOR_GREEN_LOW;
+
+        // RIGHT
+        for (uint k=0; k<16; k++)
+          if (scales->preset(scale()) != NULL)
+            if (k == subscale())
+              extraBtns[ROW_RIGHT][k] = blink(COLOR_YELLOW);
+            else if (k <= scales->preset(scale())->available())
+              extraBtns[ROW_RIGHT][k] = COLOR_GREEN_LOW;
+            else
+              extraBtns[ROW_RIGHT][k] = COLOR_OFF;
+
       }
 
     };
 
   private:
 
+    ScaleSelector* scales;
+
     void init_mem() {
+
+      // reset on Focus
+      copypage(0);
+      menu(MENU_STEPS);
+      menu(MENU_STEPS, false);
+
+      // not reset onFocus / kept from memory
       if (mem_uint("init") == 1) return;
       mem_uint("init",        1);
-
-      mem_uint("zoom",        4);
-      mem_uint("activepage",  1);
-      mem_uint("copypage",    0);
-      mem_uint("activemenu",  BTN_STEPS_PAGE);
-
-      int topnote = 43;
-      for (uint k=0; k<16; k++)
-        mem_array_uint("notes", k, topnote-k);
-
+      zoom(4);
+      page(1);
+      scale(0);
+      scalebase(scales->preset(0)->start());
       // cout << "Mem init" << endl;
     }
 
@@ -218,6 +260,60 @@ class Mode_steps16 : public Mode_base16 {
 
     void mem_array_uint(string key, uint k, uint val) {
       (*store->pattern()->mem())["LPsteps"][key][k] = val;
+    }
+
+    // ActiveMenu GET/SET
+    uint menu() {
+      if (mem_uint("tempmenu") != MENU_NONE) return mem_uint("tempmenu");
+      else return mem_uint("activemenu");
+    }
+    void menu(uint sel) { mem_uint("activemenu", sel); }
+    void menu(uint sel, bool pushed) {
+      if (pushed) mem_uint("tempmenu", sel);
+      else mem_uint("tempmenu", MENU_NONE);
+    }
+
+    // Zoom GET/SET
+    uint zoom() { return mem_uint("zoom"); }
+    void zoom(uint sel) { mem_uint("zoom", sel); }
+
+    // Zoom GET/SET
+    uint page() { return mem_uint("activepage"); }
+    void page(uint sel) { mem_uint("activepage", sel); }
+
+    // Zoom GET/SET
+    uint copypage() { return mem_uint("copypage"); }
+    void copypage(uint sel) { mem_uint("copypage", sel); }
+
+    // Scale GET/SET
+    uint scale() { return mem_uint("scale"); }
+    void scale(uint sel) {
+      if (scales->preset(sel) != NULL) {
+        mem_uint("scale", sel);
+        mem_uint("subscale", 0);
+      }
+    }
+
+    // SubScale GET/SET
+    uint subscale() { return mem_uint("subscale"); }
+    void subscale(uint sel) {
+      if (scales->preset(scale()) != NULL && sel <= scales->preset(scale())->available()) {
+        mem_uint("subscale", sel);
+        scalebase(scales->preset(scale())->start());
+      }
+    }
+
+    // Scale basenote GET/SET
+    uint scalebase() { return mem_uint("scalebase"); }
+    void scalebase(uint sel) { mem_uint("scalebase", sel); }
+
+    // Notes GET/SET
+    uint note(uint y) {
+      if (scales->preset(scale()) == NULL) return 0;
+      vector<uint> notesV = scales->preset(scale())->notes(subscale());
+      y = 7-y+scalebase();
+      if (y < notesV.size() && y >= 0) return notesV[y];
+      return 0;
     }
 
 };

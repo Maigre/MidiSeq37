@@ -9,7 +9,7 @@ class Mode_home16 : public Mode_abstract {
 
       Mode_abstract::refresh();
 
-      if (!drawText("MiniSeq37", 2, 16, false))
+      if (!drawText("MiniSeq37", 2, 32, false))
         store->setMode(MODE_PATTS);
 
     }

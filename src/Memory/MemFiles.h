@@ -7,9 +7,15 @@
 
 class MemFiles {
   public:
-    static void Write(uint mem, Json::Value data) {
+    static void lock(bool locker) {
       static std::mutex mutex;
-      mutex.lock();
+      if (locker) mutex.lock();
+      else mutex.unlock();
+    }
+
+    static void Write(uint mem, Json::Value data) {
+
+      MemFiles::lock(true);
       Json::Value json;
       json["MiniSeq37_v0"] = data;
 
@@ -19,13 +25,13 @@ class MemFiles {
       file.open(ofToDataPath(filename), ofFile::WriteOnly);
       file << styledWriter.write(json);
       file.close();
-      mutex.unlock();
+      MemFiles::lock(false);
       //cout << "SAVE " << filename << endl;
     }
 
     static Json::Value Read(uint mem) {
       static std::mutex mutex;
-      mutex.lock();
+      MemFiles::lock(true);
       Json::Value json;
       Json::Reader reader;
       ofFile file;
@@ -38,7 +44,7 @@ class MemFiles {
       // cout << styledWriter.write(json);
 
       //cout << "LOAD " << filename << endl;
-      mutex.unlock();
+      MemFiles::lock(false);
       if (json.isMember("MiniSeq37_v0")) return json["MiniSeq37_v0"];
       else return json;
     }
