@@ -34,12 +34,13 @@ class Mode_steps16 : public Mode_base16 {
       uint length = RESOLUTION / zoom();
       uint step = (x + (page()-1)*store->width*8) * length;
 
+      if (note(y) > 0) {
+        Pattern* patt = store->pattern();
+        std::vector<MMidiNote*> notes = patt->getNotes(step, length, note(y));
 
-      Pattern* patt = store->pattern();
-      std::vector<MMidiNote*> notes = patt->getNotes(step, length, note(y));
-
-      if (notes.size() == 0) patt->addNote(step, note(y), length-1);
-      else for (u_int k=0; k<notes.size(); k++) notes[k]->remove();
+        if (notes.size() == 0) patt->addNote(step, note(y), length-1);
+        else for (u_int k=0; k<notes.size(); k++) notes[k]->remove();
+      }
 
     };
 
@@ -126,7 +127,6 @@ class Mode_steps16 : public Mode_base16 {
       // load
       Pattern* patt = store->pattern();
       Track* track = store->track();
-      uint height_steps = (store->height*8);
       bool isPlaying = track->activePatternIndex() == store->getPatt();
 
       // No pattern selected: exit edit
@@ -140,18 +140,18 @@ class Mode_steps16 : public Mode_base16 {
       uint xShift = (page()-1)*store->width*8;
       uint stepSize = RESOLUTION / zoom();
 
-      for (uint x = 0; x < store->width*8; x++) {
+      for (uint x = 0; x < 16; x++) {
         // get notes for current grid
         uint realcol = x+xShift;
         std::vector<MMidiNote*> notes = patt->getNotes(realcol*stepSize, stepSize);
 
-        for (uint y = 0; y < height_steps; y++) {
+        for (uint y = 0; y < 16; y++) {
             // vertical red bar
             if (isPlaying && realcol == active_col) matrix[x][y] = COLOR_RED;
 
             // notes green
             for (uint k=0; k<notes.size(); k++)
-              if (notes[k]->note == note(y)) {
+              if (note(y) > 0 && notes[k]->note == note(y)) {
                 if (matrix[x][y] > COLOR_OFF) matrix[x][y] = COLOR_YELLOW;
                 else matrix[x][y] = COLOR_GREEN;
               }
