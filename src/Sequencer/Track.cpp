@@ -40,6 +40,11 @@ bool Track::running() {
 void Track::playPattern(uint index) {
   pattern(index);
   runningPatt = index;
+  playProgram();
+}
+
+void Track::playProgram() {
+  activePattern()->playProgram(midiOut, channel);
 }
 
 void Track::progress() {
@@ -64,7 +69,7 @@ void Track::onTick(uint64_t tick) {
   activePattern()->resize();
   std::vector<MMidiNote*> notes = activePattern()->getNotes(t,1);
   for (uint k=0; k<notes.size(); k++) {
-    notes[k]->play(midiOut, channel, t);     // NoteON
+    notes[k]->play(midiOut, channel);     // NoteON
     notes[k]->stopTick = (t + notes[k]->length) % activePattern()->clock()->ticksloop();  /// TODO : Pb si changement de pattern plus court
     notesOFF[notes[k]->note] = notes[k];      // Program NoteOFF
   }

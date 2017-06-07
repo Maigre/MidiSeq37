@@ -19,6 +19,8 @@ class Track : public Lockable, public MemObject {
     bool  running();
     void  playPattern(uint index);
 
+    void playProgram();
+
     void setChannel(uint ch);
     uint getChannel();
 

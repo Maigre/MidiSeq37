@@ -7,6 +7,7 @@ class Pattern : public Lockable, public MemObject {
   public:
     Pattern();
 
+    void clear();
     bool notempty();
     Clock* clock();
     void resize();
@@ -20,11 +21,17 @@ class Pattern : public Lockable, public MemObject {
 
     void cleanNotes(uint tick);
 
+    MMidiProgram* getProgram();
+    void setProgram(uint bank, uint program);
+    void clearProgram();
+    void playProgram(ofxMidiOut* _out, u_int _chan);
+
     Json::Value memdump();
     void memload(Json::Value data);
 
   private:
     Clock* pattclock;
     std::vector<std::vector<MMidiNote*>> notesON;
+    MMidiProgram* program;
 
 };

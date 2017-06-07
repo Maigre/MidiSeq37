@@ -4,6 +4,11 @@
 using namespace std;
 
 Clock::Clock() {
+  clear();
+}
+
+void Clock::clear() {
+  lock();
   tickMod = 0;
 
   loopBars = 1; // Bars in a loop
@@ -14,11 +19,11 @@ Clock::Clock() {
 
   memory["loopBars"] = loopBars;
   memory["barBeats"] = barBeats;
+  unlock();
 }
 
 // import memory
 void Clock::memload(Json::Value data) {
-  cout << "Mem Load " ;
   setLoopSize(data["loopBars"].asUInt());
   setBarSize(data["barBeats"].asUInt());
 }
@@ -29,7 +34,7 @@ void Clock::setLoopSize(uint barsInLoop) {
   loopBars = barsInLoop;
   memory["loopBars"] = loopBars;
   unlock();
-  cout << loopBars << endl;
+  // cout << loopBars << endl;
 }
 
 void Clock::setBarSize(uint beatsInBar) {

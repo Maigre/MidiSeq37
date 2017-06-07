@@ -18,7 +18,7 @@ class MMidiEvent : public MemObject {
 class MMidiNote : public MMidiEvent {
   public:
     MMidiNote(u_int _note, u_int _velo, u_int _length);
-    void play(ofxMidiOut* _out, u_int _chan, u_int tick);
+    void play(ofxMidiOut* _out, u_int _chan);
     void stop();
 
     u_int note;
@@ -29,4 +29,13 @@ class MMidiNote : public MMidiEvent {
   private:
     ofxMidiOut* out;
     u_int channel;
+};
+
+class MMidiProgram : public MMidiEvent {
+  public:
+    MMidiProgram(u_int _bank, u_int _program);
+    void play(ofxMidiOut* _out, u_int _chan);
+
+    u_int bank;
+    u_int program;
 };

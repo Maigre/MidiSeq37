@@ -1,11 +1,15 @@
 #include "Mode_base16.h"
 #include "NotesScale.h"
 
-#define BTN_STEPS_PAGE      0
-#define BTN_STEPS_CHANNEL   5
+// LEFT BTNS
+#define BTN_STEPS_MUTE      0
+#define BTN_STEPS_PAGE      1
+#define BTN_STEPS_CHANNEL   4
+#define BTN_STEPS_PROGRAM   5
 #define BTN_STEPS_NOTEUP    6
 #define BTN_STEPS_NOTEDOWN  7
 
+// RIGHT BTNS
 #define BTN_COPY    7
 #define BTN_PASTE   6
 
@@ -14,6 +18,8 @@
 #define MENU_ZOOM     2
 #define MENU_MIDICH   3
 #define MENU_SCALE    4
+#define MENU_MUTE     5
+#define MENU_PROGRAM  6
 
 
 class Mode_steps16 : public Mode_base16 {
@@ -31,15 +37,37 @@ class Mode_steps16 : public Mode_base16 {
     void inputMatrix(uint x, uint y, bool pushed) {
       if (!pushed) return;
 
-      uint length = RESOLUTION / zoom();
-      uint step = (x + (page()-1)*store->width*8) * length;
+      // SELECT PROGRAM
+      if (menu() == MENU_PROGRAM) {
 
-      if (note(y) > 0) {
-        Pattern* patt = store->pattern();
-        std::vector<MMidiNote*> notes = patt->getNotes(step, length, note(y));
+        // pressed: erase program selection
+        if (store->buttons->active(ROW_LEFT, BTN_STEPS_PROGRAM)) {
+          if (store->pattern()->getProgram() != NULL)
+            if (store->pattern()->getProgram()->program == x+16*y) {
+              store->pattern()->clearProgram();
+              bank(0);
+            }
+        }
 
-        if (notes.size() == 0) patt->addNote(step, note(y), length-1);
-        else for (u_int k=0; k<notes.size(); k++) notes[k]->remove();
+        // select program
+        else if (bank() > 0) {
+          store->pattern()->setProgram(bank()-1, x+16*y);
+          store->track()->playProgram();
+        }
+      }
+
+      // ADD/REM Note
+      else {
+        uint length = RESOLUTION / zoom();
+        uint step = (x + (page()-1)*store->width*8) * length;
+
+        if (note(y) > 0) {
+          Pattern* patt = store->pattern();
+          std::vector<MMidiNote*> notes = patt->getNotes(step, length, note(y));
+
+          if (notes.size() == 0) patt->addNote(step, note(y), length-1);
+          else for (u_int k=0; k<notes.size(); k++) notes[k]->remove();
+        }
       }
 
     };
@@ -55,6 +83,9 @@ class Mode_steps16 : public Mode_base16 {
 
       // midi channel
       else if (n == BTN_STEPS_CHANNEL) menu(MENU_MIDICH, pushed);
+
+      // program
+      else if (n == BTN_STEPS_PROGRAM) menu(MENU_PROGRAM);
 
       // increase notes
       else if (n == BTN_STEPS_NOTEUP && pushed) {
@@ -90,6 +121,9 @@ class Mode_steps16 : public Mode_base16 {
       else if (menu() == MENU_MIDICH)
         store->track()->setChannel(n+1);
 
+      // program bank select
+      else if (menu() == MENU_PROGRAM) bank(n+1);
+
       // Scale select
       else if (menu() == MENU_SCALE) scale(n);
 
@@ -100,18 +134,29 @@ class Mode_steps16 : public Mode_base16 {
       if (!pushed) return;
 
       // Subscale select
-      if (menu() == MENU_SCALE) subscale(n);
+      if (menu() == MENU_SCALE) {
+        if (subscale() == n) menu(MENU_STEPS);
+        else subscale(n);
+      }
 
       // Copy page
       else if (n == BTN_COPY) copypage(page());
 
-      // Paste page
-      else if (n == BTN_PASTE && copypage() > 0 && copypage() != page()) {
-        uint stepSize = RESOLUTION/zoom();
-        uint tCount = store->width*8*stepSize;
-        uint tOrig = (copypage()-1)*tCount;
-        uint tDest = (page()-1)*tCount;
-        store->pattern()->copyNotes(tOrig, tDest, tCount);
+      // Paste page or erase pattern
+      else if (n == BTN_PASTE) {
+        // Copy is pressed -> Erase pattern
+        if (store->buttons->active(ROW_RIGHT, BTN_COPY)) {
+          store->pattern()->clear();
+          init_display();
+        }
+        // Paste
+        else if (copypage() > 0 && copypage() != page()) {
+          uint stepSize = RESOLUTION/zoom();
+          uint tCount = store->width*8*stepSize;
+          uint tOrig = (copypage()-1)*tCount;
+          uint tDest = (page()-1)*tCount;
+          store->pattern()->copyNotes(tOrig, tDest, tCount);
+        }
       }
 
       // Base menu
@@ -135,26 +180,41 @@ class Mode_steps16 : public Mode_base16 {
         return;
       }
 
-      // STEPS matrix
       uint active_col = (patt->clock()->beatfraction(zoom())-1);
       uint xShift = (page()-1)*store->width*8;
       uint stepSize = RESOLUTION / zoom();
 
-      for (uint x = 0; x < 16; x++) {
-        // get notes for current grid
-        uint realcol = x+xShift;
-        std::vector<MMidiNote*> notes = patt->getNotes(realcol*stepSize, stepSize);
+      // PRGM matrix
+      if (menu() == MENU_PROGRAM) {
+        for (uint x = 0; x < 16; x++)
+          for (uint y = 0; y < 16; y++) {
+            matrix[x][y] = COLOR_GREEN_LOW;
+            if (store->pattern()->getProgram() != NULL
+                  && bank()-1 == store->pattern()->getProgram()->bank
+                  && (x+16*y) == store->pattern()->getProgram()->program)
+                    matrix[x][y] = COLOR_AMBER;
+          }
+      }
 
-        for (uint y = 0; y < 16; y++) {
-            // vertical red bar
-            if (isPlaying && realcol == active_col) matrix[x][y] = COLOR_RED;
+      // STEPS matrix
+      else {
 
-            // notes green
-            for (uint k=0; k<notes.size(); k++)
-              if (note(y) > 0 && notes[k]->note == note(y)) {
-                if (matrix[x][y] > COLOR_OFF) matrix[x][y] = COLOR_YELLOW;
-                else matrix[x][y] = COLOR_GREEN;
-              }
+        for (uint x = 0; x < 16; x++) {
+          // get notes for current grid
+          uint realcol = x+xShift;
+          std::vector<MMidiNote*> notes = patt->getNotes(realcol*stepSize, stepSize);
+
+          for (uint y = 0; y < 16; y++) {
+              // vertical red bar
+              if (isPlaying && realcol == active_col) matrix[x][y] = COLOR_RED;
+
+              // notes green
+              for (uint k=0; k<notes.size(); k++)
+                if (note(y) > 0 && notes[k]->note == note(y)) {
+                  if (matrix[x][y] > COLOR_OFF) matrix[x][y] = COLOR_YELLOW;
+                  else matrix[x][y] = COLOR_GREEN;
+                }
+          }
         }
       }
 
@@ -197,6 +257,18 @@ class Mode_steps16 : public Mode_base16 {
           if (k == track->getChannel()-1) extraBtns[ROW_TOP][k] = COLOR_RED;
       }
 
+      // MENU: Program select
+      else if (menu() == MENU_PROGRAM) {
+        // LEFT
+        extraBtns[ROW_LEFT][BTN_STEPS_PROGRAM] = COLOR_GREEN;
+
+        // TOP: Bank
+        for (uint k=0; k<16; k++) {
+          if (k == bank()-1) extraBtns[ROW_TOP][k] = COLOR_AMBER;
+          else extraBtns[ROW_TOP][k] = COLOR_GREEN_LOW;
+        }
+      }
+
       // MENU: Note Scale
       else if (menu() == MENU_SCALE) {
         // LEFT
@@ -235,14 +307,23 @@ class Mode_steps16 : public Mode_base16 {
       menu(MENU_STEPS);
       menu(MENU_STEPS, false);
 
+      if (store->pattern()->getProgram() != NULL)
+        bank(store->pattern()->getProgram()->bank+1);
+      else bank(0);
+
+
       // not reset onFocus / kept from memory
       if (mem_uint("init") == 1) return;
       mem_uint("init",        1);
+      init_display();
+      scale(0);
+
+      // cout << "Mem init" << endl;
+    }
+
+    void init_display() {
       zoom(4);
       page(1);
-      scale(0);
-      scalebase(scales->preset(0)->start());
-      // cout << "Mem init" << endl;
     }
 
     // HOOK TO Pattern Memory
@@ -281,16 +362,20 @@ class Mode_steps16 : public Mode_base16 {
     uint page() { return mem_uint("activepage"); }
     void page(uint sel) { mem_uint("activepage", sel); }
 
-    // Zoom GET/SET
+    // Copy GET/SET
     uint copypage() { return mem_uint("copypage"); }
     void copypage(uint sel) { mem_uint("copypage", sel); }
+
+    // Bank GET/SET
+    uint bank() { return mem_uint("bank"); }
+    void bank(uint sel) { mem_uint("bank", sel); }
 
     // Scale GET/SET
     uint scale() { return mem_uint("scale"); }
     void scale(uint sel) {
       if (scales->preset(sel) != NULL) {
         mem_uint("scale", sel);
-        mem_uint("subscale", 0);
+        subscale(0);
       }
     }
 

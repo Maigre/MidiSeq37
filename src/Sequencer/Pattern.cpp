@@ -5,16 +5,20 @@ using namespace std;
 Pattern::Pattern() {
   pattclock = new Clock();
   notesON.resize(pattclock->ticksloop());
+  program = NULL;
 };
 
+void Pattern::clear() {
+  lock();
+  for (uint k=0; k<notesON.size(); k++) notesON[k].clear();
+  unlock();
+  pattclock->clear();
+}
+
 bool Pattern::notempty() {
-  bool notempty = false;
   for (uint k=0; k<notesON.size(); k++)
-    if (notesON[k].size() > 0) {
-      notempty = true;
-      break;
-    }
-  return notempty;
+    if (!notesON[k].empty()) return true;
+  return false;
 };
 
 Clock* Pattern::clock() {
@@ -103,6 +107,30 @@ void Pattern::cleanNotes(uint t) {
   unlock();
 }
 
+// get MMidiProgram
+MMidiProgram* Pattern::getProgram() {
+  return program;
+}
+
+// set bank+program
+void Pattern::setProgram(uint _bank, uint _program) {
+  lock();
+  program = new MMidiProgram(_bank, _program);
+  unlock();
+}
+
+// clear bank+program
+void Pattern::clearProgram() {
+  lock();
+  program = NULL;
+  unlock();
+}
+
+// Play program change
+void Pattern::playProgram(ofxMidiOut* _out, u_int _chan) {
+  if (program != NULL) program->play( _out, _chan);
+};
+
 // export memory
 Json::Value Pattern::memdump() {
 
@@ -122,6 +150,10 @@ Json::Value Pattern::memdump() {
   // Clock
   memory["clock"] = pattclock->memdump();
 
+  // Program
+  if (program != NULL)
+    memory["program"] = program->memdump();
+
   return memory;
 }
 
@@ -138,4 +170,8 @@ void Pattern::memload(Json::Value data) {
             data["notes"][k]["note"].asUInt(),
             data["notes"][k]["length"].asUInt(),
             data["notes"][k]["velocity"].asUInt());
+
+  // Program
+  if (data.isMember("program"))
+    setProgram(data["program"]["bank"].asUInt(), data["program"]["prog"].asUInt());
 }

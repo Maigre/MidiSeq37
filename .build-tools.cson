@@ -4,10 +4,10 @@ providers: [
     config:
       commands: [
         {
-          project: "/home/mgr/Bakery/OF_098/apps/myApps/MiniSeq37"
-          source: "/home/mgr/Bakery/OF_098/apps/myApps/MiniSeq37/.build-tools.cson"
+          project: "/home/mgr/Bakery/OF98/apps/myApps/MiniSeq37"
+          source: "/home/mgr/Bakery/OF98/apps/myApps/MiniSeq37/.build-tools.cson"
           name: "make"
-          command: "make -j4 "
+          command: "make -j8"
           wd: "."
           env: {}
           modifier:
@@ -46,8 +46,8 @@ providers: [
           version: 2
         }
         {
-          project: "/home/mgr/Bakery/OF_098/apps/myApps/MiniSeq37"
-          source: "/home/mgr/Bakery/OF_098/apps/myApps/MiniSeq37/.build-tools.cson"
+          project: "/home/mgr/Bakery/OF98/apps/myApps/MiniSeq37"
+          source: "/home/mgr/Bakery/OF98/apps/myApps/MiniSeq37/.build-tools.cson"
           name: "run"
           command: "./bin/MiniSeq37"
           wd: "."

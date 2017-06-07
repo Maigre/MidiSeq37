@@ -13,6 +13,7 @@ class TextDisp : public TextFont44 {
       if (t == text) return;
       text = t;
       lastBeat = -1; //disable scroller
+      scroller = 0;
       basematrix = new uint*[4*text.size()];
       for (uint k=0; k<text.size(); k++) {
         for (uint c=0; c<4; c++) {

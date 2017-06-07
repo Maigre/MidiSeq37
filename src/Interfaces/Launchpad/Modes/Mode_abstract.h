@@ -87,13 +87,13 @@ class Mode_abstract {
       text = new TextDisp(store->baseclock());
     }
 
-    bool drawText(string t, uint y, uint speed = 0, bool repeat = false) {
+    bool drawText(string t, uint yoffset, uint speed = 0, bool repeat = false) {
       text->set(t);
       if (speed > 0 && !text->scroll(speed, repeat)) return false;
       uint** txt = text->getMatrix(16);
       for (uint x = 0; x < 16; x++)
         for (uint y = 0; y < 4; y++)
-            matrix[x][y+3] = txt[x][y];
+            matrix[x][y+yoffset] = txt[x][y];
       return true;
     }
 

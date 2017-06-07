@@ -15,6 +15,7 @@ class LPstore {
       height = h;
 
       selectedmode = MODE_NONE;
+      previousmode = MODE_NONE;
       selectedtrack = 1;
       selectedpatt = (track() != NULL) ? track()->activePatternIndex() : 0;
 
@@ -54,7 +55,14 @@ class LPstore {
       return modes[selectedmode];
     };
 
+    void prevMode() {
+      if (previousmode == MODE_NONE) return;
+      setMode(previousmode);
+      previousmode = MODE_NONE;
+    }
+
     virtual void setMode(uint m) {
+      previousmode = selectedmode;
       selectedmode = m;
     }
 
@@ -72,6 +80,7 @@ class LPstore {
   protected:
     Mode_abstract*  modes[16];
 
+    uint        previousmode;
     uint        selectedmode;
     uint        selectedtrack;
     int         selectedpatt;

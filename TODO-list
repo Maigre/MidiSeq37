@@ -1,7 +1,11 @@
 BUGS
-
+- On pattern change: all notes OFF
 
 GENERAL
+
+  Send OSC to remote display
+  Looper FX
+  Note Repeat FX (Midi Delay) -> roll
 
   LAYOUT RIGHT
   0 - PATT MODE (Home) -> Keep & select to edit without playing
@@ -15,15 +19,22 @@ GENERAL
 
 MODE PATTERN
   mute on top
+  kit selection ?
+  edit+play or edit only
+  patt volume
 
   LAYOUT LEFT
-    play line
+    play lines
 
 MODE STEP
   program change
   volume per line (note)
-  velo per note (relative to line volume)
+  velo per note (relative to line volume and patt volume)
   swing per note
+  transpose (vertical and horizontal)
+  scale modes + move notes on scale
+  play only current page
+  page follower
 
   LAYOUT LEFT
     0 - Page + length selection (on top) // Press to Zoom (on top)

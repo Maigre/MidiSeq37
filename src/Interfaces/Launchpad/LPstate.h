@@ -4,8 +4,7 @@
 #include "Mode_home16.h"
 #include "Mode_steps16.h"
 #include "Mode_patts16.h"
-#include "Mode_load16.h"
-#include "Mode_save16.h"
+#include "Mode_bank16.h"
 
 class LPstate : public LPstore {
 
@@ -16,8 +15,7 @@ class LPstate : public LPstore {
       modes[MODE_NONE] = new Mode_home16(this);
       modes[MODE_STEPS] = new Mode_steps16(this);
       modes[MODE_PATTS] = new Mode_patts16(this);
-      modes[MODE_LOAD] = new Mode_load16(this);
-      modes[MODE_SAVE] = new Mode_save16(this);
+      modes[MODE_BANK] = new Mode_bank16(this);
 
     };
 

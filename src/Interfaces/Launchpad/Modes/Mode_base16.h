@@ -12,14 +12,13 @@ class Mode_base16 : public Mode_abstract {
     // RIGHT pushed
     virtual void inputRight(uint n, bool pushed){
 
-      // PATTERN
+      // PATTERN / STEPS
       if (pushed && n == BTN_MODE_PATTS)
-        store->setMode(MODE_PATTS);
+        if (store->getMode() != MODE_PATTS) store->setMode(MODE_PATTS);
+        else store->setMode(MODE_STEPS);
 
       // BANK
-      if (n == BTN_MODE_BANK)
-        if (pushed && store->getMode() == MODE_LOAD) store->setMode(MODE_SAVE);
-        else store->setMode(MODE_LOAD);
+      if (n == BTN_MODE_BANK) store->setMode(MODE_BANK);
 
     };
 
@@ -39,9 +38,8 @@ class Mode_base16 : public Mode_abstract {
           (store->getMode() == MODE_STEPS) ? COLOR_YELLOW : COLOR_OFF;
 
       // Mode Bank
-      extraBtns[ROW_RIGHT][BTN_MODE_BANK] =
-      (store->getMode() == MODE_LOAD) ? semiblink(COLOR_GREEN) :
-        (store->getMode() == MODE_SAVE) ? COLOR_RED : COLOR_OFF;
+      if (store->getMode() == MODE_BANK)
+        extraBtns[ROW_RIGHT][BTN_MODE_BANK] = semiblink(COLOR_GREEN);
 
     };
 

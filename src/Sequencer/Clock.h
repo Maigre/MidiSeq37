@@ -7,6 +7,7 @@ class Clock : public Lockable, public MemObject {
 
     // config
     Clock();
+    void clear();
     void memload(Json::Value data);
     void setLoopSize(uint barsInLoop);
     void setBarSize(uint beatsInBar);

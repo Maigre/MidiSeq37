@@ -1,8 +1,13 @@
 #include "Mode_base16.h"
 
+#define BTN_COPY    7
+#define BTN_PASTE   6
+
 class Mode_patts16 : public Mode_base16 {
   public:
-    Mode_patts16(LPstore* st) : Mode_base16(st) {};
+    Mode_patts16(LPstore* st) : Mode_base16(st) {
+      clipboard = Json::nullValue;
+    };
 
     void inputMatrix(uint x, uint y, bool pushed) {
       if (!pushed) return;
@@ -35,6 +40,29 @@ class Mode_patts16 : public Mode_base16 {
 
     };
 
+    // RIGHT pushed
+    void inputRight(uint n, bool pushed){
+      if (!pushed) return;
+
+      // Copy pattern
+      if (n == BTN_COPY) {
+        if (store->pattern() != NULL && store->pattern()->notempty())
+          clipboard = store->pattern()->memdump();
+      }
+
+      // Paste pattern or Erase
+      else if (n == BTN_PASTE) {
+        if (store->pattern() != NULL)
+          // COPY is pressed => Erase pattern
+          if (store->buttons->active(ROW_RIGHT, BTN_COPY)) store->pattern()->clear();
+          // Paste
+          else if (clipboard != Json::nullValue) store->pattern()->memload(clipboard);
+      }
+
+      // Base menu
+      else Mode_base16::inputRight(n, pushed);
+    };
+
 
     // DRAW full matrix
     void refresh() {
@@ -63,5 +91,7 @@ class Mode_patts16 : public Mode_base16 {
       }
 
     };
+
+  Json::Value clipboard;
 
 };

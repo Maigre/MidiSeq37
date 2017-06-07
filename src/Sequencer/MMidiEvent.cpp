@@ -28,7 +28,7 @@ MMidiNote::MMidiNote(u_int _note, u_int _velo, u_int _length)
     memory["length"] = length;
   }
 
-void MMidiNote::play(ofxMidiOut* _out, u_int _chan, u_int tick) {
+void MMidiNote::play(ofxMidiOut* _out, u_int _chan) {
   out = _out;
   channel = _chan;
   if (out == NULL) return;
@@ -40,6 +40,21 @@ void MMidiNote::stop() {
   if (out == NULL) return;
   out->sendNoteOff(channel, note);
   playing = false;
+}
+
+////////////////////////////
+
+MMidiProgram::MMidiProgram(u_int _bank, u_int _program)
+  : MMidiEvent(), bank(_bank), program(_program) {
+    memory["bank"] = bank;
+    memory["prog"] = program;
+  }
+
+void MMidiProgram::play(ofxMidiOut* _out, u_int _chan) {
+  if (_out == NULL) return;
+  _out->sendControlChange(_chan, 0, bank/8);
+  _out->sendControlChange(_chan, 32, bank%8);
+  _out->sendProgramChange(_chan, program);
 }
 
 ////////////////////////////
