@@ -1,27 +1,47 @@
 #include "Mode_base16.h"
 
-#define BTN_COPY    7
-#define BTN_PASTE   6
+#define BTN_VOLUME    1
+#define BTN_COPY      7
+#define BTN_PASTE     6
+
+
+struct btnMatrix {
+  uint x;
+  uint y;
+  bool on;
+};
 
 class Mode_patts16 : public Mode_base16 {
   public:
     Mode_patts16(LPstore* st) : Mode_base16(st) {
       clipboard = Json::nullValue;
+      activeMatrix.on = false;
     };
 
     void inputMatrix(uint x, uint y, bool pushed) {
-      if (!pushed) return;
 
-      // Edit pattern
+      // memorize matrix push
+      if (pushed) {
+        activeMatrix.on = true;
+        activeMatrix.x = x;
+        activeMatrix.y = y;
+      }
+      else {
+        if (activeMatrix.x == x && activeMatrix.y == y) activeMatrix.on = false;
+        return;
+      }
+
+      // patt pushed: Edit pattern
       if (store->buttons->active(ROW_RIGHT) == BTN_MODE_PATTS) {
         store->setTrack(x+1, y+1);
+        activeMatrix.on = false;
         store->setMode(MODE_STEPS);
       }
 
       // Edit if already selected and playing
-      else if ((x+1) == store->getTrack() && (y+1) == store->getPatt()
-                && (y+1) == store->track()->activePatternIndex())
-        store->setMode(MODE_STEPS);
+      // else if ((x+1) == store->getTrack() && (y+1) == store->getPatt()
+      //           && (y+1) == store->track()->activePatternIndex())
+      //   store->setMode(MODE_STEPS);
 
       // Select and play
       else if ( store->setTrack(x+1, y+1) ) store->track()->playPattern(y+1);
@@ -31,6 +51,11 @@ class Mode_patts16 : public Mode_base16 {
     // TOP pushed
     void inputTop(uint n, bool pushed) {
       if (!pushed) return;
+
+      // TOP: Volume if vol pressed
+      if (store->buttons->active(ROW_RIGHT) == BTN_VOLUME)
+        if (store->pattern() != NULL)
+          store->pattern()->setVolume(n*8);
 
     };
 
@@ -90,8 +115,16 @@ class Mode_patts16 : public Mode_base16 {
           }
       }
 
+      // TOP: Volume if vol pressed
+      if (store->buttons->active(ROW_RIGHT) == BTN_VOLUME) {
+        extraBtns[ROW_RIGHT][BTN_VOLUME] = COLOR_RED_LOW;
+        if (store->pattern() != NULL)
+          for (uint k = 0; k < 16; k++)
+            if (k <= store->pattern()->getVolume()/8) extraBtns[ROW_TOP][k] = COLOR_RED_LOW;
+      }
+
     };
 
   Json::Value clipboard;
-
+  btnMatrix activeMatrix;
 };

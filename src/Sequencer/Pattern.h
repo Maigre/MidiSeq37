@@ -26,6 +26,9 @@ class Pattern : public Lockable, public MemObject {
     void clearProgram();
     void playProgram(ofxMidiOut* _out, u_int _chan);
 
+    void setVolume(uint vol);
+    uint getVolume();
+
     Json::Value memdump();
     void memload(Json::Value data);
 
@@ -33,5 +36,6 @@ class Pattern : public Lockable, public MemObject {
     Clock* pattclock;
     std::vector<std::vector<MMidiNote*>> notesON;
     MMidiProgram* program;
+    uint volume;
 
 };

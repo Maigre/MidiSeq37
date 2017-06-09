@@ -19,6 +19,7 @@ class MMidiNote : public MMidiEvent {
   public:
     MMidiNote(u_int _note, u_int _velo, u_int _length);
     void play(ofxMidiOut* _out, u_int _chan);
+    void play(ofxMidiOut* _out, u_int _chan, float modVolume);
     void stop();
 
     u_int note;

@@ -29,10 +29,14 @@ MMidiNote::MMidiNote(u_int _note, u_int _velo, u_int _length)
   }
 
 void MMidiNote::play(ofxMidiOut* _out, u_int _chan) {
+  play(_out, _chan, 1.0);
+}
+
+void MMidiNote::play(ofxMidiOut* _out, u_int _chan, float modVolume) {
   out = _out;
   channel = _chan;
   if (out == NULL) return;
-  out->sendNoteOn(channel, note,  velocity);
+  out->sendNoteOn(channel, note,  int(velocity*modVolume));
   playing = true;
 }
 

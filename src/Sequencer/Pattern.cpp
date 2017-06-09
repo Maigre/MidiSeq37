@@ -6,6 +6,7 @@ Pattern::Pattern() {
   pattclock = new Clock();
   notesON.resize(pattclock->ticksloop());
   program = NULL;
+  volume = 100;
 };
 
 void Pattern::clear() {
@@ -126,6 +127,17 @@ void Pattern::clearProgram() {
   unlock();
 }
 
+// Volume
+void Pattern::setVolume(uint vol) {
+  lock();
+  volume = vol;
+  unlock();
+}
+
+uint Pattern::getVolume() {
+  return volume;
+}
+
 // Play program change
 void Pattern::playProgram(ofxMidiOut* _out, u_int _chan) {
   if (program != NULL) program->play( _out, _chan);
@@ -150,6 +162,9 @@ Json::Value Pattern::memdump() {
   // Clock
   memory["clock"] = pattclock->memdump();
 
+  // Volume
+  memory["volume"] = volume;
+
   // Program
   if (program != NULL)
     memory["program"] = program->memdump();
@@ -163,6 +178,10 @@ void Pattern::memload(Json::Value data) {
 
   // Clock
   pattclock->memload(data["clock"]);
+
+  // Volume
+  if (data.isMember("volume"))
+    volume = data["volume"].asUInt();
 
   // Notes
   for (uint k=0; k<data["notes"].size(); k++)

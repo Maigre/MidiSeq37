@@ -15,7 +15,7 @@ class Mode_base16 : public Mode_abstract {
       // PATTERN / STEPS
       if (pushed && n == BTN_MODE_PATTS)
         if (store->getMode() != MODE_PATTS) store->setMode(MODE_PATTS);
-        else store->setMode(MODE_STEPS);
+        //else store->setMode(MODE_STEPS);
 
       // BANK
       if (n == BTN_MODE_BANK) store->setMode(MODE_BANK);

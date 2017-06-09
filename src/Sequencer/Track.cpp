@@ -68,8 +68,9 @@ void Track::onTick(uint64_t tick) {
   // Notes ON
   activePattern()->resize();
   std::vector<MMidiNote*> notes = activePattern()->getNotes(t,1);
+  float modVolume = activePattern()->getVolume()*1.0/128;
   for (uint k=0; k<notes.size(); k++) {
-    notes[k]->play(midiOut, channel);     // NoteON
+    notes[k]->play(midiOut, channel, modVolume);     // NoteON
     notes[k]->stopTick = (t + notes[k]->length) % activePattern()->clock()->ticksloop();  /// TODO : Pb si changement de pattern plus court
     notesOFF[notes[k]->note] = notes[k];      // Program NoteOFF
   }
