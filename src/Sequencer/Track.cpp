@@ -118,7 +118,8 @@ void Track::memload(Json::Value data) {
   MemObject::memload(data);
 
   setChannel(data["channel"].asUInt());
+  // cout << data["channel"].asUInt() << endl;
 
   for (uint k=0; k<data["patterns"].size(); k++)
-    pattern(k+1)->memload(data["patterns"][k]);
+    if (!data["patterns"][k].isNull()) pattern(k+1)->memload(data["patterns"][k]);
 }

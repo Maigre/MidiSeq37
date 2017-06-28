@@ -24,6 +24,8 @@ void Clock::clear() {
 
 // import memory
 void Clock::memload(Json::Value data) {
+  // cout << " loopBars: " << data["loopBars"].asUInt() << endl;
+  // cout << " barBeats: " << data["barBeats"].asUInt() << endl;
   setLoopSize(data["loopBars"].asUInt());
   setBarSize(data["barBeats"].asUInt());
 }
