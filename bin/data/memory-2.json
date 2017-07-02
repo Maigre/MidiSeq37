@@ -1,0 +1,3792 @@
+{
+   "MiniSeq37_v0" : {
+      "tracks" : [
+         {
+            "channel" : 0,
+            "patterns" : null
+         },
+         {
+            "channel" : 1,
+            "patterns" : [
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 1,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 1,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 0,
+                     "prog" : 95
+                  },
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 1,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 6,
+                     "activepage" : 2,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 1,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 41,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 41,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 0,
+                     "prog" : 95
+                  },
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 1,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 36,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 0,
+                     "prog" : 34
+                  },
+                  "volume" : 100
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 2,
+                     "bank" : 1,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 36,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 0,
+                     "prog" : 34
+                  },
+                  "volume" : 100
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 2,
+                     "bank" : 1,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 36,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 3240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 0,
+                     "prog" : 34
+                  },
+                  "volume" : 100
+               }
+            ]
+         },
+         {
+            "channel" : 1,
+            "patterns" : [
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 2,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 2,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 2,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 4,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 2,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 4
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 4080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 4560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 4920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 5040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 5520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 6000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 6480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 6840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 6960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 7200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 7320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 7440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 7440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 7560,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 3,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 2,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 4
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 6480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 6600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 7080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 7440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 7560,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 2,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 6480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 6600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 7080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 7440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 7560,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 8,
+                     "scalebase" : 0,
+                     "subscale" : 2,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 3720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 4920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 6480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 6600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 7080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 7440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 46,
+                        "tick" : 7560,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               }
+            ]
+         },
+         {
+            "channel" : 3,
+            "patterns" : null
+         },
+         {
+            "channel" : 4,
+            "patterns" : null
+         },
+         {
+            "channel" : 5,
+            "patterns" : null
+         },
+         {
+            "channel" : 6,
+            "patterns" : null
+         },
+         {
+            "channel" : 7,
+            "patterns" : null
+         },
+         {
+            "channel" : 8,
+            "patterns" : null
+         },
+         {
+            "channel" : 9,
+            "patterns" : [
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 2,
+                     "bank" : 8,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 34,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 4
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 35,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 3840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 4200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 4560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 4920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 5280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 5280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 5520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 5520,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 5760,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 6120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 6480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 6840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 6960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 39,
+                        "tick" : 7200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 7200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 7440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 42,
+                        "tick" : 7440,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 7,
+                     "prog" : 60
+                  },
+                  "volume" : 64
+               },
+               null,
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 2,
+                     "bank" : 5,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 41,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 45,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 45,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 43,
+                        "tick" : 3000,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 44,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 4,
+                     "prog" : 60
+                  },
+                  "volume" : 64
+               }
+            ]
+         },
+         {
+            "channel" : 10,
+            "patterns" : []
+         },
+         {
+            "channel" : 11,
+            "patterns" : [
+               null,
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 0,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 31,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 33,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 32,
+                        "tick" : 360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 34,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 31,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 31,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 31,
+                        "tick" : 1320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 31,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     }
+                  ],
+                  "volume" : 64
+               },
+               null,
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 2,
+                     "bank" : 2,
+                     "copypage" : 1,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 34,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 34,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 34,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2640,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 35,
+                        "tick" : 3360,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 1,
+                     "prog" : 34
+                  },
+                  "volume" : 100
+               },
+               null,
+               {
+                  "LPsteps" : {
+                     "activemenu" : 6,
+                     "activepage" : 1,
+                     "bank" : 2,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 32,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 120,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 35,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 35,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 35,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 32,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 32,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 32,
+                        "tick" : 1320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 32,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 1,
+                     "prog" : 19
+                  },
+                  "volume" : 100
+               }
+            ]
+         },
+         {
+            "channel" : 12,
+            "patterns" : [
+               {
+                  "LPsteps" : {
+                     "activemenu" : 6,
+                     "activepage" : 1,
+                     "bank" : 16,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 36,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 3
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 960,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 1920,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2040,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 2880,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3480,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 3600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 3840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 4320,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 4800,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 5160,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 37,
+                        "tick" : 5400,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 5520,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 15,
+                     "prog" : 49
+                  },
+                  "volume" : 64
+               }
+            ]
+         },
+         {
+            "channel" : 13,
+            "patterns" : [
+               null,
+               null,
+               null,
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 2,
+                     "bank" : 9,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 36,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 2
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 360,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 2280,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 3120,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 8,
+                     "prog" : 124
+                  },
+                  "volume" : 100
+               },
+               {
+                  "LPsteps" : {
+                     "activemenu" : 1,
+                     "activepage" : 1,
+                     "bank" : 2,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 34,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 38,
+                        "tick" : 600,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 35,
+                        "tick" : 840,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 35,
+                        "tick" : 1080,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 34,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 36,
+                        "tick" : 1440,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1800,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 1,
+                     "prog" : 85
+                  },
+                  "volume" : 100
+               }
+            ]
+         },
+         {
+            "channel" : 14,
+            "patterns" : [
+               {
+                  "LPsteps" : {
+                     "activemenu" : 6,
+                     "activepage" : 1,
+                     "bank" : 2,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 36,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 240,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 40,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 1,
+                     "prog" : 89
+                  },
+                  "volume" : 64
+               }
+            ]
+         },
+         {
+            "channel" : 15,
+            "patterns" : [
+               null,
+               null,
+               null,
+               null,
+               null,
+               {
+                  "LPsteps" : {
+                     "activemenu" : 6,
+                     "activepage" : 1,
+                     "bank" : 15,
+                     "copypage" : 0,
+                     "init" : 1,
+                     "scale" : 0,
+                     "scalebase" : 47,
+                     "subscale" : 0,
+                     "tempmenu" : 0,
+                     "zoom" : 4
+                  },
+                  "clock" : {
+                     "barBeats" : 4,
+                     "loopBars" : 1
+                  },
+                  "notes" : [
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 0,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 720,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 50,
+                        "tick" : 1200,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 49,
+                        "tick" : 1560,
+                        "velocity" : 64
+                     },
+                     {
+                        "length" : 119,
+                        "note" : 50,
+                        "tick" : 1680,
+                        "velocity" : 64
+                     }
+                  ],
+                  "program" : {
+                     "bank" : 14,
+                     "prog" : 27
+                  },
+                  "volume" : 100
+               }
+            ]
+         },
+         {
+            "channel" : 16,
+            "patterns" : null
+         }
+      ]
+   }
+}
