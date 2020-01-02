@@ -78,13 +78,12 @@ class Mode_bank16 : public Mode_base16 {
         extraBtns[ROW_RIGHT][BTN_MODE_BANK] = COLOR_RED;
       }
 
-
-
     }
 
     bool doneSave;
     bool doSave;
-
+    
   private:
-    vector<uint> bankList;
+    std::vector<uint> bankList;
+
 };

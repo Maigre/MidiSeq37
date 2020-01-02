@@ -20,14 +20,14 @@ class NotesScale {
       return startPoint;
     }
 
-    vector<uint> notes(uint select=0) {
+    std::vector<uint> notes(uint select=0) {
       if (select < notesScales.size()) return notesScales[select];
-      vector<uint> empty;
+      std::vector<uint> empty;
       return empty;
     }
 
   protected:
-    vector<vector<uint>> notesScales;
+    std::vector<std::vector<uint>> notesScales;
     uint startPoint;
 };
 

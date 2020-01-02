@@ -17,17 +17,17 @@ LPad::LPad(LPstate* s, char outport, uint n) {
 
   padOut.openPort(outport);
   padOut.sendControlChange(1, 0, 0);
-  padIn.openPort(ofxMidiOut::getPortName(outport));
+  padIn.openPort(padIn.getInPortName(outport));
   padIn.addListener(this);
 
-  cout << "ADDED PAD " << offset;
-  cout << " : " << ofxMidiOut::getPortName(outport) << endl;
+  std::cout << "ADDED PAD " << offset;
+  std::cout << " : " << padOut.getOutPortName(outport) << std::endl;
 
 }
 
 void LPad::newMidiMessage(ofxMidiMessage& msg) {
 
-  // cout << "Received: " << msg.status << " " << msg.pitch << " " << msg.velocity << " " << msg.control << " " << msg.value << endl;
+  // std::cout << "Received: " << msg.status << " " << msg.pitch << " " << msg.velocity << " " << msg.control << " " << msg.value << std::endl;
 
   // 8x8 matrix & right col
   if (msg.status == 144) {

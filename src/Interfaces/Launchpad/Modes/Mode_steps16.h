@@ -327,19 +327,19 @@ class Mode_steps16 : public Mode_base16 {
     }
 
     // HOOK TO Pattern Memory
-    uint mem_uint(string key) {
+    uint mem_uint(std::string key) {
       return (*store->pattern()->mem())["LPsteps"][key].asUInt();
     }
 
-    void mem_uint(string key, uint val) {
+    void mem_uint(std::string key, uint val) {
       (*store->pattern()->mem())["LPsteps"][key] = val;
     }
 
-    uint mem_array_uint(string key, uint k) {
+    uint mem_array_uint(std::string key, uint k) {
       return (*store->pattern()->mem())["LPsteps"][key][k].asUInt();
     }
 
-    void mem_array_uint(string key, uint k, uint val) {
+    void mem_array_uint(std::string key, uint k, uint val) {
       (*store->pattern()->mem())["LPsteps"][key][k] = val;
     }
 
@@ -395,7 +395,7 @@ class Mode_steps16 : public Mode_base16 {
     // Notes GET/SET
     uint note(uint y) {
       if (scales->preset(scale()) == NULL) return 0;
-      vector<uint> notesV = scales->preset(scale())->notes(subscale());
+      std::vector<uint> notesV = scales->preset(scale())->notes(subscale());
       y = 7-y+scalebase();
       if (y < notesV.size() && y >= 0) return notesV[y];
       return 0;

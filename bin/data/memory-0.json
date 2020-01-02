@@ -10,8 +10,8 @@
             "patterns" : [
                {
                   "LPsteps" : {
-                     "activemenu" : 6,
-                     "activepage" : 2,
+                     "activemenu" : 1,
+                     "activepage" : 1,
                      "bank" : 8,
                      "copypage" : 0,
                      "init" : 1,
@@ -23,7 +23,7 @@
                   },
                   "clock" : {
                      "barBeats" : 4,
-                     "loopBars" : 2
+                     "loopBars" : 1
                   },
                   "notes" : [
                      {
@@ -277,7 +277,7 @@
                   "LPsteps" : {
                      "activemenu" : 1,
                      "activepage" : 1,
-                     "bank" : 0,
+                     "bank" : 1,
                      "copypage" : 0,
                      "init" : 1,
                      "scale" : 8,
@@ -299,32 +299,14 @@
                      },
                      {
                         "length" : 119,
-                        "note" : 46,
-                        "tick" : 240,
+                        "note" : 42,
+                        "tick" : 480,
                         "velocity" : 64
                      },
                      {
                         "length" : 119,
                         "note" : 42,
-                        "tick" : 360,
-                        "velocity" : 64
-                     },
-                     {
-                        "length" : 119,
-                        "note" : 42,
-                        "tick" : 720,
-                        "velocity" : 64
-                     },
-                     {
-                        "length" : 119,
-                        "note" : 49,
-                        "tick" : 840,
-                        "velocity" : 64
-                     },
-                     {
-                        "length" : 119,
-                        "note" : 42,
-                        "tick" : 1080,
+                        "tick" : 960,
                         "velocity" : 64
                      },
                      {
@@ -332,26 +314,12 @@
                         "note" : 42,
                         "tick" : 1440,
                         "velocity" : 64
-                     },
-                     {
-                        "length" : 119,
-                        "note" : 52,
-                        "tick" : 1560,
-                        "velocity" : 64
-                     },
-                     {
-                        "length" : 119,
-                        "note" : 46,
-                        "tick" : 1560,
-                        "velocity" : 64
-                     },
-                     {
-                        "length" : 119,
-                        "note" : 42,
-                        "tick" : 1680,
-                        "velocity" : 64
                      }
                   ],
+                  "program" : {
+                     "bank" : 0,
+                     "prog" : 0
+                  },
                   "volume" : 64
                },
                {

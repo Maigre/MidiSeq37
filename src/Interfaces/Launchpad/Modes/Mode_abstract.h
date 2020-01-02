@@ -87,7 +87,7 @@ class Mode_abstract {
       text = new TextDisp(store->baseclock());
     }
 
-    bool drawText(string t, uint yoffset, uint speed = 0, bool repeat = false) {
+    bool drawText(std::string t, uint yoffset, uint speed = 0, bool repeat = false) {
       text->set(t);
       if (speed > 0 && !text->scroll(speed, repeat)) return false;
       uint** txt = text->getMatrix(16);

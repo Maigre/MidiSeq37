@@ -39,7 +39,7 @@ float Ticker::getRealBPM() {
 
 void Ticker::threadedFunction() {
 
-  chrono::high_resolution_clock::time_point now = chrono::high_resolution_clock::now();
+  std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
   startTime = duration_cast<microseconds>(now.time_since_epoch()).count();
   lastTickTime = 0;
   missedTicks = 0;
@@ -49,7 +49,7 @@ void Ticker::threadedFunction() {
   {
     // CALCULATE NEW TICKS
     lock();
-    chrono::high_resolution_clock::time_point now = chrono::high_resolution_clock::now();
+    std::chrono::high_resolution_clock::time_point now = std::chrono::high_resolution_clock::now();
     uint64_t currentTime = duration_cast<microseconds>(now.time_since_epoch()).count();
     if (lastTickTime > 0) {
       int microLapse = (currentTime - lastTickTime);
@@ -59,16 +59,16 @@ void Ticker::threadedFunction() {
       if(incTick>1) missedTicks += incTick-1;
     }
     else lastTickTime = currentTime;
-    now = now + chrono::microseconds((lastTickTime+tickTime)-currentTime);
+    now = now + std::chrono::microseconds((lastTickTime+tickTime)-currentTime);
     unlock();
     newTick->notify();
 
     //DEBUG
     if (debug == 1) {
       double ellapsed = (currentTime - startTime)/1000000.0;
-      cout << " ELLAPSED: " << ellapsed;
-      cout << " TICKS: " << *ticks;
-      cout << endl;
+      std::cout << " ELLAPSED: " << ellapsed;
+      std::cout << " TICKS: " << *ticks;
+      std::cout << std::endl;
     }
 
 

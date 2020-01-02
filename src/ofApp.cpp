@@ -6,19 +6,41 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+  std::cout << R"(
+     ___                  ___                  ___         ___                
+    /\  \                /\  \                /\__\       /\__\               
+   |::\  \     ___       \:\  \     ___      /:/ _/_     /:/ _/_      ___     
+   |:|:\  \   /\__\       \:\  \   /\__\    /:/ /\  \   /:/ /\__\    /\  \    
+ __|:|\:\  \ /:/__/   _____\:\  \ /:/__/   /:/ /::\  \ /:/ /:/ _/_  /::\  \   
+/::::|_\:\__/::\  \  /::::::::\__/::\  \  /:/_/:/\:\__/:/_/:/ /\__\/:/\:\  \  
+\:\~~\  \/__\/\:\  \_\:\~~\~~\/__\/\:\  \_\:\/:/ /:/  \:\/:/ /:/  /:/ /::\  \ 
+ \:\  \      ~~\:\/\__\:\  \      ~~\:\/\__\::/ /:/  / \::/_/:/  /:/_/:/\:\__\
+  \:\  \        \::/  /\:\  \        \::/  /\/_/:/  /   \:\/:/  /\:\/:/  \/__/
+   \:\__\       /:/  /  \:\__\       /:/  /   /:/  /     \::/  /  \::/  /     
+    \/__/       \/__/    \/__/       \/__/    \/__/       \/__/    \/__/      
+      
+)" << std::endl << std::endl;
+
   if (FRAMERATE > 60) ofSetVerticalSync(false);
   ofSetFrameRate(FRAMERATE);
 
   // LIST midi port
-  ofxMidiOut::listPorts();
+  ofxMidiOut midiOut;
+  // midiOut.listOutPorts();
 
   // Find Midi OUT
   uint portout=0;
-  for (char port=0; port<ofxMidiOut::getNumPorts(); port++)
-    if (ofxMidiOut::getPortName(port).find(MIDI_OUT_NAME) != string::npos) {
+  std::cout << "Looking for MIDI OUT";
+  for (char port=0; port<midiOut.getNumOutPorts(); port++)
+  {
+    std::cout << std::endl << "Scanning " <<  midiOut.getOutPortName(port);
+    if (midiOut.getOutPortName(port).find(MIDI_OUT_NAME) != string::npos) {
       portout = port;
+      std::cout << " -> Found !";
       break;
     }
+  }
+  std::cout << std::endl << std::endl;
 
   // Create Sequencer
   sequencer = new Sequencer(portout);

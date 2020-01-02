@@ -49,9 +49,9 @@ void Sequencer::progress() {
 
   if (!ticker->isThreadRunning()) return;
 
-  cout << " Perfs: " << ticker->getPerformances();
-  cout << " Real BPM: "<< ticker->getRealBPM();
-  cout << endl;
+  std::cout << " Perfs: " << ticker->getPerformances();
+  std::cout << " Real BPM: "<< ticker->getRealBPM();
+  std::cout << std::endl;
 
   //if (t > 10000) stop();
 
@@ -91,7 +91,7 @@ void Sequencer::threadedFunction() {
     ticker->unlock();
 
     for (uint64_t t = lastTick+1; t <= currentTick; t++) {
-      //cout << "new tick: "<< t << endl;
+      //std::cout << "new tick: "<< t << std::endl;
 
       //check every tracks
       lock();

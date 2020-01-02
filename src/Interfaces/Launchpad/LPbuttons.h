@@ -28,7 +28,7 @@ class LPbuttons {
     }
 
   private:
-    uint         pushedBtns[4][16];
-    list<uint>   pushedStack[4];
+    uint              pushedBtns[4][16];
+    std::list<uint>   pushedStack[4];
 
 };

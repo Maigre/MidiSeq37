@@ -6,9 +6,10 @@ Launchpad::Launchpad(Sequencer* seq) {
 
 
   // Detect size
+  ofxMidiOut midiOut;
   uint offset = 0;
-  for (char port=0; port<ofxMidiOut::getNumPorts(); port++)
-    if (ofxMidiOut::getPortName(port).find("Launchpad") != string::npos) {
+  for (char port=0; port<midiOut.getNumOutPorts(); port++)
+    if (midiOut.getOutPortName(port).find("Launchpad") != std::string::npos) {
       //pads[offset] = new LPad(state, modes, port, offset);
       offset++;
       if (offset == 4) break;
@@ -21,12 +22,19 @@ Launchpad::Launchpad(Sequencer* seq) {
 
   // Create PADS
   offset = 0;
-  for (char port=0; port<ofxMidiOut::getNumPorts(); port++)
-    if (ofxMidiOut::getPortName(port).find("Launchpad") != string::npos) {
+  std::cout << "Looking for LAUNCHPADs";
+  for (char port=0; port<midiOut.getNumOutPorts(); port++) {
+    std::cout << std::endl << "Scanning " <<  midiOut.getOutPortName(port);
+    if (midiOut.getOutPortName(port).find("Launchpad") != std::string::npos) {
+      std::cout << " -> Found !" << std::endl;
       pads[offset] = new LPad(state, port, offset);
       offset++;
       if (offset == 4) break;
     }
+  }
+  if (offset == 0) std::cout << std::endl << "NO Launchpad found :( ";
+  std::cout << std::endl << std::endl;
+
 }
 
 void Launchpad::draw() {

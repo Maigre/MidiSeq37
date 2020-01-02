@@ -1,4 +1,5 @@
 #pragma once
+#include "ofFileUtils.h"
 #include "json/json.h"
 #include <mutex>
 
@@ -21,7 +22,7 @@ class MemFiles {
 
       Json::StyledWriter styledWriter;
       ofFile file;
-      string filename = NAMEBASE+to_string(mem)+"."+NAMEEXT;
+      std::string filename = NAMEBASE+std::to_string(mem)+"."+NAMEEXT;
       file.open(ofToDataPath(filename), ofFile::WriteOnly);
       file << styledWriter.write(json);
       file.close();
@@ -35,7 +36,7 @@ class MemFiles {
       Json::Value json;
       Json::Reader reader;
       ofFile file;
-      string filename = NAMEBASE+to_string(mem)+"."+NAMEEXT;
+      std::string filename = NAMEBASE+std::to_string(mem)+"."+NAMEEXT;
       file.open(ofToDataPath(filename), ofFile::ReadOnly);
       reader.parse(file.readToBuffer().getText(), json);
       file.close();
@@ -49,15 +50,15 @@ class MemFiles {
       else return json;
     }
 
-    static vector<uint> List() {
-      vector<uint> list;
+    static std::vector<uint> List() {
+      std::vector<uint> list;
       ofDirectory dir(ofToDataPath("."));
       dir.listDir();
       dir.allowExt(NAMEEXT);
-      string basename = NAMEBASE;
+      std::string basename = NAMEBASE;
       for(uint k=0; k<dir.size(); k++)
         if (dir.getName(k).find(NAMEBASE) == 0) {
-          string banknum = dir.getName(k).substr(basename.size());
+          std::string banknum = dir.getName(k).substr(basename.size());
           banknum = banknum.substr(0, banknum.find("."));
           list.push_back(stoi(banknum));
         }

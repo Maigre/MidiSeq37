@@ -9,7 +9,7 @@ class TextDisp : public TextFont44 {
       scroller = 0;
     };
 
-    void set(string t) {
+    void set(std::string t) {
       if (t == text) return;
       text = t;
       lastBeat = -1; //disable scroller
@@ -72,7 +72,7 @@ class TextDisp : public TextFont44 {
     }
 
   private:
-    string text;
+    std::string text;
     uint** basematrix;
     Clock* clock;
     int scroller;
