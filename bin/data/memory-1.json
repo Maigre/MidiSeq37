@@ -1,0 +1,74 @@
+{
+   "MiniSeq37_v0" : {
+      "tracks" : [
+         {
+            "channel" : 0,
+            "patterns" : null
+         },
+         {
+            "channel" : 1,
+            "patterns" : null
+         },
+         {
+            "channel" : 2,
+            "patterns" : null
+         },
+         {
+            "channel" : 3,
+            "patterns" : null
+         },
+         {
+            "channel" : 4,
+            "patterns" : null
+         },
+         {
+            "channel" : 5,
+            "patterns" : null
+         },
+         {
+            "channel" : 6,
+            "patterns" : null
+         },
+         {
+            "channel" : 7,
+            "patterns" : null
+         },
+         {
+            "channel" : 8,
+            "patterns" : null
+         },
+         {
+            "channel" : 9,
+            "patterns" : null
+         },
+         {
+            "channel" : 10,
+            "patterns" : null
+         },
+         {
+            "channel" : 11,
+            "patterns" : null
+         },
+         {
+            "channel" : 12,
+            "patterns" : null
+         },
+         {
+            "channel" : 13,
+            "patterns" : null
+         },
+         {
+            "channel" : 14,
+            "patterns" : null
+         },
+         {
+            "channel" : 15,
+            "patterns" : null
+         },
+         {
+            "channel" : 16,
+            "patterns" : null
+         }
+      ]
+   }
+}

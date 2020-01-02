@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path" : "${workspaceRoot}/../../../../addons/ofxMidi"
+		},
+		{
+			"path" : "${workspaceRoot}/../../../../addons/ofxOsc"
+		},
+		{
+			"path" : "${workspaceRoot}/../../../../addons/ofxJSON"
+		},
+		{
+			"path": "${workspaceRoot}/../../../../libs/openFrameworks"
+		}
+	],
+	"settings": {}
+}

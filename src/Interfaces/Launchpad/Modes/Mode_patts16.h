@@ -63,6 +63,10 @@ class Mode_patts16 : public Mode_base16 {
     void inputLeft(uint n, bool pushed){
       if (!pushed) return;
 
+      // SCENE PLAY
+      for (int i=0; i<16; i++)
+        if ( store->setTrack(i+1, n+1) ) store->track()->playPattern(n+1);
+
     };
 
     // RIGHT pushed
@@ -122,6 +126,10 @@ class Mode_patts16 : public Mode_base16 {
           for (uint k = 0; k < 16; k++)
             if (k <= store->pattern()->getVolume()/8) extraBtns[ROW_TOP][k] = COLOR_RED_LOW;
       }
+
+      // LEFT: Yellow on press
+      if (store->buttons->active(ROW_LEFT) != BTN_NONE)
+          extraBtns[ROW_LEFT][store->buttons->active(ROW_LEFT)] = COLOR_YELLOW;
 
     };
 
